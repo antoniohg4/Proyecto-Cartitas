@@ -27,9 +27,10 @@ public class Coleccion_vista extends JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         panelVacio = new javax.swing.JPanel();
+        iconoMonedita = new javax.swing.JPanel();
+        textoMoneditas = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         carta2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -45,15 +46,44 @@ public class Coleccion_vista extends JFrame {
         setSize(new java.awt.Dimension(1920, 1080));
         getContentPane().setLayout(new java.awt.GridLayout(1, 3));
 
+        iconoMonedita.setBackground(new java.awt.Color(153, 255, 0));
+        iconoMonedita.setForeground(new java.awt.Color(204, 204, 0));
+
+        javax.swing.GroupLayout iconoMoneditaLayout = new javax.swing.GroupLayout(iconoMonedita);
+        iconoMonedita.setLayout(iconoMoneditaLayout);
+        iconoMoneditaLayout.setHorizontalGroup(
+            iconoMoneditaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        iconoMoneditaLayout.setVerticalGroup(
+            iconoMoneditaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        textoMoneditas.setText("9999999999");
+
         javax.swing.GroupLayout panelVacioLayout = new javax.swing.GroupLayout(panelVacio);
         panelVacio.setLayout(panelVacioLayout);
         panelVacioLayout.setHorizontalGroup(
             panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGroup(panelVacioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(iconoMonedita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(textoMoneditas, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         panelVacioLayout.setVerticalGroup(
             panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 644, Short.MAX_VALUE)
+            .addGroup(panelVacioLayout.createSequentialGroup()
+                .addGroup(panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelVacioLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(iconoMonedita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelVacioLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(textoMoneditas, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(538, Short.MAX_VALUE))
         );
 
         getContentPane().add(panelVacio);
@@ -112,6 +142,8 @@ public class Coleccion_vista extends JFrame {
         );
 
         jPanel5.add(jPanel3);
+
+        jPanel4.setPreferredSize(new java.awt.Dimension(100, 200));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -195,6 +227,7 @@ public class Coleccion_vista extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel carta1;
     private javax.swing.JPanel carta2;
+    private javax.swing.JPanel iconoMonedita;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -202,5 +235,6 @@ public class Coleccion_vista extends JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel panelVacio;
     private javax.swing.JPanel panelVacio2;
+    private javax.swing.JLabel textoMoneditas;
     // End of variables declaration//GEN-END:variables
 }
