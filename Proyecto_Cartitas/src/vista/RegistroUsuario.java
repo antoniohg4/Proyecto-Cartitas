@@ -4,6 +4,9 @@
  */
 package vista;
 
+import modelo.EnumRegiones;
+import controlador.gestion_BD;
+
 /**
  *
  * @author DAM-2
@@ -29,7 +32,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         panelVacio = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         textFieldPasswordUsuario = new javax.swing.JTextField();
-        textFieldNombreUsuario1 = new javax.swing.JTextField();
+        textFieldNombreUsuario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -43,13 +46,13 @@ public class RegistroUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1920, 1080));
         setResizable(false);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout panelVacioLayout = new javax.swing.GroupLayout(panelVacio);
         panelVacio.setLayout(panelVacioLayout);
         panelVacioLayout.setHorizontalGroup(
             panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+            .addGap(0, 358, Short.MAX_VALUE)
         );
         panelVacioLayout.setVerticalGroup(
             panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -65,17 +68,17 @@ public class RegistroUsuario extends javax.swing.JFrame {
         textFieldPasswordUsuario.setMinimumSize(new java.awt.Dimension(50, 100));
         textFieldPasswordUsuario.setPreferredSize(new java.awt.Dimension(50, 100));
 
-        textFieldNombreUsuario1.setToolTipText("Nombre");
-        textFieldNombreUsuario1.setMinimumSize(new java.awt.Dimension(50, 100));
-        textFieldNombreUsuario1.setPreferredSize(new java.awt.Dimension(50, 100));
+        textFieldNombreUsuario.setToolTipText("Nombre");
+        textFieldNombreUsuario.setMinimumSize(new java.awt.Dimension(50, 100));
+        textFieldNombreUsuario.setPreferredSize(new java.awt.Dimension(50, 100));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
         jLabel1.setText("Contraseña:");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
         jLabel2.setText("Nombre:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
         jLabel3.setText("Edad:");
 
         textFieldEdadUsuario.setToolTipText("Contraseña");
@@ -88,12 +91,18 @@ public class RegistroUsuario extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
         jLabel4.setText("Región: ");
 
         comboBoxRegiones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUW", "EUNE", "KOR", "NA", "LATAM", "CHI", "JAP", "RUS", "AFR", "OCE" }));
 
         btnEnviar.setText("Enviar");
+        btnEnviar.setPreferredSize(new java.awt.Dimension(72, 24));
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
 
         btnReset.setText("Reiniciar");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -112,9 +121,9 @@ public class RegistroUsuario extends javax.swing.JFrame {
                     .addComponent(btnEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboBoxRegiones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textFieldNombreUsuario1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textFieldNombreUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textFieldPasswordUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(textFieldEdadUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -127,7 +136,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(textFieldNombreUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -153,7 +162,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         panelVacio2.setLayout(panelVacio2Layout);
         panelVacio2Layout.setHorizontalGroup(
             panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+            .addGap(0, 358, Short.MAX_VALUE)
         );
         panelVacio2Layout.setVerticalGroup(
             panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,6 +195,62 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+        String nombre = this.textFieldNombreUsuario.getText();
+        String pwd = this.textFieldPasswordUsuario.getText();
+        int edad = Integer.parseInt(this.textFieldEdadUsuario.getText());
+        
+        //Pilla la region del enumerado segun el item seleccionado en el comboBox
+        EnumRegiones reg = null;
+        switch (this.comboBoxRegiones.getSelectedItem().toString()) {
+            case "EUW":
+                reg = EnumRegiones.EUW;
+                break;
+                
+            case "EUNE":
+                reg = EnumRegiones.EUNE;
+                break;
+                
+            case "KOR":
+                reg = EnumRegiones.KOR;
+                break;   
+                
+            case "NA":
+                reg = EnumRegiones.NA;
+                break;
+                
+            case "LATAM":
+                reg = EnumRegiones.LATAM;
+                break;
+                
+            case "CHI":
+                reg = EnumRegiones.CHI;
+                break;
+                
+            case "JAP":
+                reg = EnumRegiones.JAP;
+                break;
+                
+            case "RUS":
+                reg = EnumRegiones.RUS;
+                break;
+                
+            case "AFR":
+                reg = EnumRegiones.AFR;
+                break;
+                
+            case "OCE":
+                reg = EnumRegiones.OCE;
+                break;
+            default:
+                throw new AssertionError();
+        }
+        
+        //Llama al metodo para dar de alta al usuario
+        gestion_BD.altaUsuario(nombre, pwd, edad, reg);
+        
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,7 +303,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
     private javax.swing.JPanel panelVacio;
     private javax.swing.JPanel panelVacio2;
     private javax.swing.JTextField textFieldEdadUsuario;
-    private javax.swing.JTextField textFieldNombreUsuario1;
+    private javax.swing.JTextField textFieldNombreUsuario;
     private javax.swing.JTextField textFieldPasswordUsuario;
     // End of variables declaration//GEN-END:variables
 }
