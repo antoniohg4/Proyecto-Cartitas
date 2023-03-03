@@ -14,7 +14,7 @@ import modelo.EnumRegiones;
  * @author DAM-2
  */
 public class gestion_BD {
-    private Connection con = null;
+    private static Connection con = null;
     /**
      * Crea la conexion a la BD y establece autoCommit a false
      */
@@ -57,17 +57,25 @@ public class gestion_BD {
      * 
      * @return 
      */
-    public static ArrayList<Carta> getColeccionCartas(){
+    public static ArrayList<Carta> getColeccionCartas(String nombreJugador){
         ArrayList<Carta> listaCartas = new ArrayList<Carta>();
         //TODO Select de las cartas
         
-       /* while(rs.next()){
-            Carta c = new Carta(rs.getInt("id"), rs.getString("nombre"), rs.getString("descripcion"),
-                              rs.getInt("poder"), rs.getInt("defensa"), rs.getInt("rareza"));
+        try {
+            PreparedStatement st = con.prepareStatement("SELECT DE LAS CARTAS DEL JUGADOR");
+            st.setString(1, nombreJugador);
             
-            listaCartas.add(c);
-        }*/
-        
+            ResultSet rsColeccion = st.executeQuery();
+            /*while(rs.next()){
+                  Carta c = new Carta(rs.getInt("id"), rs.getString("nombre"), rs.getString("descripcion"),
+                                    rs.getInt("poder"), rs.getInt("defensa"), rs.getInt("rareza"));
+
+                  listaCartas.add(c);
+              }*/
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return listaCartas;
     }
 }
