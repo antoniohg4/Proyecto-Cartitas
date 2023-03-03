@@ -5,6 +5,8 @@
 package controlador;
 
 import java.sql.*;
+import java.util.ArrayList;
+import modelo.Carta;
 import modelo.EnumRegiones;
 
 /**
@@ -50,4 +52,22 @@ public class gestion_BD {
     public static void altaUsuario(String nombre, String pwd, int edad, EnumRegiones reg){
         //TODO insert
     }//altaUsuario
+    
+    /**
+     * 
+     * @return 
+     */
+    public static ArrayList<Carta> getColeccionCartas(){
+        ArrayList<Carta> listaCartas = new ArrayList<Carta>();
+        //TODO Select de las cartas
+        
+       /* while(rs.next()){
+            Carta c = new Carta(rs.getInt("id"), rs.getString("nombre"), rs.getString("descripcion"),
+                              rs.getInt("poder"), rs.getInt("defensa"), rs.getInt("rareza"));
+            
+            listaCartas.add(c);
+        }*/
+        
+        return listaCartas;
+    }
 }

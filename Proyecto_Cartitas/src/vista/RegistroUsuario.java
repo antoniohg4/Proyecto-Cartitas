@@ -6,6 +6,14 @@ package vista;
 
 import modelo.EnumRegiones;
 import controlador.gestion_BD;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,6 +21,7 @@ import controlador.gestion_BD;
  */
 public class RegistroUsuario extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form RegistroUsuario
      */
@@ -29,8 +38,9 @@ public class RegistroUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
         panelVacio = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
+        panelRegistro = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         textFieldPasswordUsuario = new javax.swing.JTextField();
         textFieldEdadUsuario = new javax.swing.JTextField();
@@ -43,6 +53,17 @@ public class RegistroUsuario extends javax.swing.JFrame {
         comboBoxRegiones = new javax.swing.JComboBox<>();
         textFieldNombreUsuario = new javax.swing.JTextField();
         panelVacio2 = new javax.swing.JPanel();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -62,7 +83,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
 
         getContentPane().add(panelVacio);
 
-        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
+        panelRegistro.setBackground(new java.awt.Color(204, 204, 204));
 
         textFieldPasswordUsuario.setToolTipText("Contraseña");
         textFieldPasswordUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -161,18 +182,18 @@ public class RegistroUsuario extends javax.swing.JFrame {
                     .addContainerGap(76, Short.MAX_VALUE)))
         );
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelRegistroLayout = new javax.swing.GroupLayout(panelRegistro);
+        panelRegistro.setLayout(panelRegistroLayout);
+        panelRegistroLayout.setHorizontalGroup(
+            panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelRegistroLayout.setVerticalGroup(
+            panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel5);
+        getContentPane().add(panelRegistro);
 
         javax.swing.GroupLayout panelVacio2Layout = new javax.swing.GroupLayout(panelVacio2);
         panelVacio2.setLayout(panelVacio2Layout);
@@ -315,19 +336,20 @@ public class RegistroUsuario extends javax.swing.JFrame {
         });
         
     }
-    
-    
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnReset;
     private javax.swing.JComboBox<String> comboBoxRegiones;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel panelRegistro;
     private javax.swing.JPanel panelVacio;
     private javax.swing.JPanel panelVacio2;
     private javax.swing.JTextField textFieldEdadUsuario;
