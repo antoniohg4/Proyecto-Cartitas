@@ -1,33 +1,7 @@
-package controlador;
-
 import java.sql.*;
-import java.util.ArrayList;
-import modelo.Carta;
-import modelo.EnumRegiones;
 
-/**
- *
- * @author DAM-2
- */
-public class gestion_BD {
-    /**
-     * Crea la conexion a la BD y establece autoCommit a false
-     */
-    public static void crearConexion(Connection con){
-        try {                                       //TODO poner la base de datos bien
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BBDD", "root", "");
-            con.setAutoCommit(false);
-            System.out.println("Conexion creada");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }//crearConexion
-    
-    /**
-     * Crea la Base de Datos
-     * @param con 
-     */
-    public static void creacionBD(Connection con){
+public class CargaDB {
+    public void CreacionBD(Connection con){
         Statement st;
         String sql;
         try {
@@ -93,12 +67,8 @@ public class gestion_BD {
                 System.out.println("Error realizando Rollback");
             }
         }
-    }//creacionBD
+    }
 
-    /**
-     * Inserta las 20 cartas del juego
-     * @param con 
-     */
     public void InsertsCartas(Connection con){
         Statement st;
         String sql;
@@ -150,58 +120,36 @@ public class gestion_BD {
                 System.out.println("Error realizando Rollback");
             }
         }
-    }//insertsCartas
- 
-    
-    
-    /**
-     * Cierra la conexion a la BD
-     */
-    public void cerrarConexion(Connection con){
-        try {
-            con.close();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }//cerrarConexion
-    
-    /**
-     * Comprueba si existe un usuario, y si no, muestra la ventana de registro
-     */
-    public void comprobarSiExisteUsuario(){
-        //TODO
-    }//comprobarSiExisteUsuario
-    
-    /**
-     * Da de alta un nuevo usuario
-     */
-    public static void altaUsuario(String nombre, String pwd, int edad, EnumRegiones reg){
-        //TODO insert
-    }//altaUsuario
-    
-    /**
-     * 
-     * @return 
-     */
-    public static ArrayList<Carta> getColeccionCartas(Connection con, String nombreJugador){
-        ArrayList<Carta> listaCartas = new ArrayList<Carta>();
-        //TODO Select de las cartas
-        
-        try {
-            PreparedStatement st = con.prepareStatement("SELECT DE LAS CARTAS DEL JUGADOR");
-            st.setString(1, nombreJugador);
-            
-            ResultSet rsColeccion = st.executeQuery();
-            /*while(rs.next()){
-                  Carta c = new Carta(rs.getInt("id"), rs.getString("nombre"), rs.getString("descripcion"),
-                                    rs.getInt("poder"), rs.getInt("defensa"), rs.getInt("rareza"));
+    }
 
-                  listaCartas.add(c);
-              }*/
+    public void InsertsUsuariosPRUEBA(Connection con){
+        Statement st;
+        String sql;
+        try {
+            st=con.createStatement();
+            sql="";
+            st.addBatch(sql);
             
+            int [] numUpdates=st.executeBatch();
+			for (int i = 0; i < numUpdates.length; i++) {
+				if (numUpdates[i] == Statement.SUCCESS_NO_INFO) {
+					System.out.println("Execution " + i + ": unknown number of rows updated");
+				} else {
+					System.out.println("Execution " + i + "successful: " + numUpdates[i] + " rows updated");
+				}
+			}
+            con.commit();
+            //cerramos el statement este.
+            st.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                con.rollback();
+                System.out.println("Rollback realizado");
+            }catch(SQLException re) {
+                re.printStackTrace();
+                System.out.println("Error realizando Rollback");
+            }
         }
-        return listaCartas;
     }
 }
