@@ -1,3 +1,5 @@
+package controlador;
+
 import java.sql.*;
 
 public class CargaDB {

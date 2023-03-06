@@ -12,16 +12,15 @@ public class Carta {
 
     
     private int rareza, poder, defensa, id;
-    private String nombre, descripcion, url;
+    private String nombre, descripcion;
 
-    public Carta(int id, String nombre, String descripcion, int poder, int defensa, int rareza, String url) {
+    public Carta(int id, String nombre, String descripcion, int poder, int defensa, int rareza) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.poder = poder;
         this.defensa = defensa;
         this.rareza = rareza;
-        this.url = url;
     }
 
     public int getRareza() {
@@ -70,10 +69,6 @@ public class Carta {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-    
-    public String getURL(){
-        return url;
     }
 
     //TODO formatear el coso este

@@ -4,10 +4,8 @@
  */
 package vista;
 
-import controlador.Juego;
-import java.util.ArrayList;
-import javax.swing.*;
-import modelo.Carta;
+import java.awt.Color;
+import java.awt.Font;
 
 /**
  *
@@ -31,6 +29,7 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        cartasItems = new javax.swing.JButton[2][10];
         registroUsuario = new javax.swing.JFrame();
         panelVacio1Registro = new javax.swing.JPanel();
         panelCentralRegistro = new javax.swing.JPanel();
@@ -68,10 +67,6 @@ public class NewJFrame extends javax.swing.JFrame {
         panelColeccion = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         panelVacio2 = new javax.swing.JPanel();
-        btnComprarSobre = new javax.swing.JButton();
-        sobre = new javax.swing.JDialog();
-        jLabel2 = new javax.swing.JLabel();
-        panelSobre = new javax.swing.JPanel();
         panelVacio1 = new javax.swing.JPanel();
         panelCentral1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -83,7 +78,8 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         panelVacio3 = new javax.swing.JPanel();
 
-        registroUsuario.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+
+        registroUsuario.getContentPane().setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout panelVacio1RegistroLayout = new javax.swing.GroupLayout(panelVacio1Registro);
         panelVacio1Registro.setLayout(panelVacio1RegistroLayout);
@@ -200,7 +196,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         registroUsuario.getContentPane().add(panelVacio2Registro);
 
-        logIn.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+        logIn.getContentPane().setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout panelVacio1LoginLayout = new javax.swing.GroupLayout(panelVacio1Login);
         panelVacio1Login.setLayout(panelVacio1LoginLayout);
@@ -321,7 +317,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addContainerGap(136, Short.MAX_VALUE))
         );
 
-        menuPrincipal.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+        menuPrincipal.getContentPane().setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout panelVacioLayout = new javax.swing.GroupLayout(panelVacio);
         panelVacio.setLayout(panelVacioLayout);
@@ -395,73 +391,22 @@ public class NewJFrame extends javax.swing.JFrame {
 
         menuPrincipal.getContentPane().add(panelCentral);
 
-        btnComprarSobre.setText("Comprar sobre");
-        btnComprarSobre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComprarSobreActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelVacio2Layout = new javax.swing.GroupLayout(panelVacio2);
         panelVacio2.setLayout(panelVacio2Layout);
         panelVacio2Layout.setHorizontalGroup(
             panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
-                .addComponent(btnComprarSobre, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
+            .addGap(0, 640, Short.MAX_VALUE)
         );
         panelVacio2Layout.setVerticalGroup(
             panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelVacio2Layout.createSequentialGroup()
-                .addGap(438, 438, 438)
-                .addComponent(btnComprarSobre, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(562, Short.MAX_VALUE))
+            .addGap(0, 1080, Short.MAX_VALUE)
         );
 
         menuPrincipal.getContentPane().add(panelVacio2);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setText("Has obtenido:");
-
-        javax.swing.GroupLayout panelSobreLayout = new javax.swing.GroupLayout(panelSobre);
-        panelSobre.setLayout(panelSobreLayout);
-        panelSobreLayout.setHorizontalGroup(
-            panelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
-        );
-        panelSobreLayout.setVerticalGroup(
-            panelSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout sobreLayout = new javax.swing.GroupLayout(sobre.getContentPane());
-        sobre.getContentPane().setLayout(sobreLayout);
-        sobreLayout.setHorizontalGroup(
-            sobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sobreLayout.createSequentialGroup()
-                .addGroup(sobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(sobreLayout.createSequentialGroup()
-                        .addGap(90, 90, 90)
-                        .addComponent(panelSobre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(sobreLayout.createSequentialGroup()
-                        .addGap(244, 244, 244)
-                        .addComponent(jLabel2)))
-                .addContainerGap(90, Short.MAX_VALUE))
-        );
-        sobreLayout.setVerticalGroup(
-            sobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(sobreLayout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelSobre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MPT");
-        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+        getContentPane().setLayout(new java.awt.GridLayout());
 
         javax.swing.GroupLayout panelVacio1Layout = new javax.swing.GroupLayout(panelVacio1);
         panelVacio1.setLayout(panelVacio1Layout);
@@ -587,18 +532,6 @@ public class NewJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textFieldEdadUsuarioKeyPressed
 
-    private void btnComprarSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarSobreActionPerformed
-        ArrayList<Carta> sobre = Juego.abrirSobre();
-        
-        for (int i = 0; i < sobre.size(); i++) {
-            JLabel labelCarta = new JLabel();
-            labelCarta.setIcon(new ImageIcon(sobre.get(i).getURL()));
-            this.sobre.add(labelCarta);
-        }
-        
-        this.sobre.setVisible(true);
-    }//GEN-LAST:event_btnComprarSobreActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -633,14 +566,24 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-   
+
+    public void crearEspacioDeCartas(){
+        for (int i = 0; i < cartasItems.length; i++) {
+            for (int j = 0; j < cartasItems.length; j++) {
+                cartasItems[i][j]=new javax.swing.JButton();//inicio boton
+                panelColeccion.add(cartasItems[i][j]);//añado boton al panel para que se vea
+                // TODO poner en el actionListener una clase donde se usará el evento cartasItems[j].addActionListener(this);//le digo que el boton lance eventos
+                cartasItems[i][j].setBackground(new Color(245,245,245));//color del fonto del boton
+                cartasItems[i][j].setFocusable(false);//esto hace que no se pueda enfocar el boton y no salga un recuadro raro feo
+                cartasItems[i][j].setFont(new Font("Arial",Font.BOLD,120));//la font de las letras dentro del boton
+            }
+        } 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnComprarSobre;
+    private javax.swing.JButton[][] cartasItems;
     private javax.swing.JButton btnEnviar1;
-    private javax.swing.JButton btnEnviar2;
+    private javax.swing.JButton btnEnviar2;//TODO PONER EVENTO AL BOTON DE ENVIAR 2
     private javax.swing.JButton btnEnviar3;
     private javax.swing.JButton btnReset1;
     private javax.swing.JButton btnReset2;
@@ -654,7 +597,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -673,7 +615,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelCentralRegistro;
     private javax.swing.JPanel panelColeccion;
     private javax.swing.JPanel panelIconoAviso;
-    private javax.swing.JPanel panelSobre;
     private javax.swing.JPanel panelVacio;
     private javax.swing.JPanel panelVacio1;
     private javax.swing.JPanel panelVacio1Login;
@@ -683,13 +624,10 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel panelVacio2Registro;
     private javax.swing.JPanel panelVacio3;
     private javax.swing.JFrame registroUsuario;
-    private javax.swing.JDialog sobre;
     private javax.swing.JTextField textFieldEdadUsuario;
     private javax.swing.JTextField textFieldNombreUsuario;
     private javax.swing.JTextField textFieldNombreUsuario1;
     private javax.swing.JTextField textFieldPasswordUsuario;
     private javax.swing.JTextField textFieldPasswordUsuario1;
     // End of variables declaration//GEN-END:variables
-
-
 }

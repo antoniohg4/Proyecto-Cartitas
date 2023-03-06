@@ -2,8 +2,6 @@ package controlador;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.Carta;
 import modelo.EnumRegiones;
 
@@ -12,11 +10,10 @@ import modelo.EnumRegiones;
  * @author DAM-2
  */
 public class gestion_BD {
-    static Connection con = null;
     /**
      * Crea la conexion a la BD y establece autoCommit a false
      */
-    public static void crearConexion(){
+    public static void crearConexion(Connection con){
         try {                                       //TODO poner la base de datos bien
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BBDD", "root", "");
             con.setAutoCommit(false);
@@ -30,7 +27,7 @@ public class gestion_BD {
      * Crea la Base de Datos
      * @param con 
      */
-    public static void creacionBD(){
+    public static void creacionBD(Connection con){
         Statement st;
         String sql;
         try {
@@ -102,7 +99,7 @@ public class gestion_BD {
      * Inserta las 20 cartas del juego
      * @param con 
      */
-    public void InsertsCartas(){
+    public void InsertsCartas(Connection con){
         Statement st;
         String sql;
         try {
@@ -160,7 +157,7 @@ public class gestion_BD {
     /**
      * Cierra la conexion a la BD
      */
-    public void cerrarConexion(){
+    public void cerrarConexion(Connection con){
         try {
             con.close();
         } catch (SQLException e) {
@@ -205,27 +202,6 @@ public class gestion_BD {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return listaCartas;
-    }
-    
-    public static ArrayList<Carta> obtenerTodasLasCartas(){
-        ArrayList<Carta> listaCartas = new ArrayList<Carta>();
-        try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM cartas;");
-            
-            while (rs.next()) {                
-                Carta c = new Carta(rs.getInt("idCarta"), rs.getString("nombre"), rs.getString("descripcion"),
-                                    rs.getInt("ataque"), rs.getInt("vida"), rs.getInt("rareza"), rs.getString("url_image"));
-            
-                listaCartas.add(c);
-            }
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(gestion_BD.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         return listaCartas;
     }
 }
