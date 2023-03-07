@@ -6,12 +6,14 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.*;
+import javax.swing.*;
 
 /**
  *
  * @author Antonio
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
     /**
      * Creates new form NewJFrame
@@ -573,11 +575,17 @@ public class NewJFrame extends javax.swing.JFrame {
                 cartasItems[i][j]=new javax.swing.JButton();//inicio boton
                 panelColeccion.add(cartasItems[i][j]);//añado boton al panel para que se vea
                 // TODO poner en el actionListener una clase donde se usará el evento cartasItems[j].addActionListener(this);//le digo que el boton lance eventos
+                cartasItems[i][j].addActionListener(this);
                 cartasItems[i][j].setBackground(new Color(245,245,245));//color del fonto del boton
                 cartasItems[i][j].setFocusable(false);//esto hace que no se pueda enfocar el boton y no salga un recuadro raro feo
                 cartasItems[i][j].setFont(new Font("Arial",Font.BOLD,120));//la font de las letras dentro del boton
             }
         } 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+            //TODO METER EVENTOS
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
