@@ -10,10 +10,13 @@ import modelo.EnumRegiones;
  * @author DAM-2
  */
 public class gestion_BD {
+    
+    static Connection con = null;
+    
     /**
      * Crea la conexion a la BD y establece autoCommit a false
      */
-    public static void crearConexion(Connection con){
+    public static void crearConexion(){
         try {                                       //TODO poner la base de datos bien
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BBDD", "root", "");
             con.setAutoCommit(false);
@@ -25,9 +28,8 @@ public class gestion_BD {
     
     /**
      * Crea la Base de Datos
-     * @param con 
      */
-    public static void creacionBD(Connection con){
+    public static void creacionBD(){
         Statement st;
         String sql;
         try {
@@ -35,40 +37,46 @@ public class gestion_BD {
             sql="CREATE DATABASE IF NOT EXISTS `mpt_db` CHARACTER SET utf8;\n";
             st.addBatch(sql);
 
-            sql="CREATE TABLE `cartas` (\n"+
-                "`IdCarta` int(11) NOT NULL,\n"+
-                "`Nombre` varchar(30) NOT NULL,\n"+
-                "`Ataque` int(11) NOT NULL,\n"+
-                "`Vida` int(11) NOT NULL,\n"+
-                "`Descripcion` varchar(150) NOT NULL,\n"+
-                "`Rareza` int(11) NOT NULL,\n"+
-                "`URL_Imagen` varchar(250) NOT NULL,\n"+
-                "PRIMARY KEY (`IdCarta`)\n"+
-              ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n";
+            sql="""
+                CREATE TABLE `cartas` (
+                `IdCarta` int(11) NOT NULL,
+                `Nombre` varchar(30) NOT NULL,
+                `Ataque` int(11) NOT NULL,
+                `Vida` int(11) NOT NULL,
+                `Descripcion` varchar(150) NOT NULL,
+                `Rareza` int(11) NOT NULL,
+                `URL_Imagen` varchar(250) NOT NULL,
+                PRIMARY KEY (`IdCarta`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                """;
             st.addBatch(sql);
 
-            sql="CREATE TABLE `usuario` (\n"+
-                "`IdUsuario` int(11) NOT NULL,\n"+
-                "`Nombre` varchar(30) NOT NULL,\n"+
-                "`Pwd` varchar(30) NOT NULL,\n"+
-                "`Edad` int(11) NOT NULL,\n"+
-                "`Monedas` int(11) NOT NULL,\n"+
-                "`Region` varchar(6) NOT NULL,\n"+
-                "PRIMARY KEY (`IdUsuario`)\n"+
-              ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n";
+            sql="""
+                CREATE TABLE `usuario` (
+                `IdUsuario` int(11) NOT NULL,
+                `Nombre` varchar(30) NOT NULL,
+                `Pwd` varchar(30) NOT NULL,
+                `Edad` int(11) NOT NULL,
+                `Monedas` int(11) NOT NULL,
+                `Region` varchar(6) NOT NULL,
+                PRIMARY KEY (`IdUsuario`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                """;
             st.addBatch(sql);
 
-            sql="CREATE TABLE `coleccion` (\n"+
-                "`IdColeccion` int(11) NOT NULL,\n"+
-                "`IdCarta` int(11) NOT NULL,\n"+
-                "`IdUsuario` int(11) NOT NULL,\n"+
-                "`NombreCarta` varchar(30) NOT NULL,\n"+
-                "PRIMARY KEY (`IdColeccion`),\n"+
-                "UNIQUE KEY `IdUsuario` (`IdUsuario`) USING BTREE,\n"+
-                "KEY `IdCarta` (`IdCarta`),\n"+
-                "CONSTRAINT `coleccion_FK` FOREIGN KEY (`IdCarta`) REFERENCES `cartas` (`IdCarta`),\n"+
-                "CONSTRAINT `coleccion_FK_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`IdUsuario`)\n"+
-              ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;\n";
+            sql="""
+                CREATE TABLE `coleccion` (
+                `IdColeccion` int(11) NOT NULL,
+                `IdCarta` int(11) NOT NULL,
+                `IdUsuario` int(11) NOT NULL,
+                `NombreCarta` varchar(30) NOT NULL,
+                PRIMARY KEY (`IdColeccion`),
+                UNIQUE KEY `IdUsuario` (`IdUsuario`) USING BTREE,
+                KEY `IdCarta` (`IdCarta`),
+                CONSTRAINT `coleccion_FK` FOREIGN KEY (`IdCarta`) REFERENCES `cartas` (`IdCarta`),
+                CONSTRAINT `coleccion_FK_1` FOREIGN KEY (`IdUsuario`) REFERENCES `usuario` (`IdUsuario`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                """;
             st.addBatch(sql);
 
             int [] numUpdates=st.executeBatch();
@@ -168,15 +176,51 @@ public class gestion_BD {
     /**
      * Comprueba si existe un usuario, y si no, muestra la ventana de registro
      */
-    public void comprobarSiExisteUsuario(){
-        //TODO
-    }//comprobarSiExisteUsuario
+    public static boolean iniciarSesion(String nombre, String pwd){
+        boolean inicioSesion = false;
+        try {
+            PreparedStatement pst = con.prepareStatement("SELECT Pwd FROM usuario WHERE nombre = ?");
+            
+            pst.setString(1, nombre);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                if (rs.getString("pwd").equals(pwd)) {
+                    
+                }
+                
+            }
+            
+        } catch (SQLException e) {
+        }
+        return inicioSesion;
+    }//iniciarSesion
     
     /**
      * Da de alta un nuevo usuario
      */
-    public static void altaUsuario(String nombre, String pwd, int edad, EnumRegiones reg){
-        //TODO insert
+    public static boolean altaUsuario(String nombre, String pwd, int edad, EnumRegiones reg){
+        boolean registrado = false;
+        try {
+            PreparedStatement pst = con.prepareStatement("INSERT INTO usuario (Nombre, Pwd, Edad, Monedas, Region) VALUES ?, ?, ?, 1000, ?");
+            
+            pst.setString(1, nombre);
+            pst.setString(2, pwd);
+            pst.setInt(3, edad);
+            pst.setString(4, reg.toString());
+            
+            int ejecutado = pst.executeUpdate();
+            
+            if (ejecutado == 1) {
+                registrado = true;
+            }
+            
+            
+        } catch (SQLException e) {
+        }
+        
+        return registrado;
     }//altaUsuario
     
     /**

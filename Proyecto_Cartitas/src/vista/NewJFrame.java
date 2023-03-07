@@ -4,6 +4,7 @@
  */
 package vista;
 
+import controlador.gestion_BD;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
@@ -31,7 +32,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cartasItems = new javax.swing.JButton[2][10];
         registroUsuario = new javax.swing.JFrame();
         panelVacio1Registro = new javax.swing.JPanel();
         panelCentralRegistro = new javax.swing.JPanel();
@@ -50,15 +50,15 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         logIn = new javax.swing.JFrame();
         panelVacio1Login = new javax.swing.JPanel();
         panelCentralLogin = new javax.swing.JPanel();
-        textFieldPasswordUsuario1 = new javax.swing.JTextField();
+        textFieldPasswordUsuarioLogIn = new javax.swing.JTextField();
         labelSuperiorRegistro1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        textFieldNombreUsuario1 = new javax.swing.JTextField();
-        btnReset2 = new javax.swing.JButton();
-        btnEnviar2 = new javax.swing.JButton();
+        textFieldNombreUsuarioLogIn = new javax.swing.JTextField();
+        btnResetLogIn = new javax.swing.JButton();
+        btnEnviarLogIn = new javax.swing.JButton();
         panelVacio2Login = new javax.swing.JPanel();
-        jDialog1 = new javax.swing.JDialog();
+        dialogLogInFallido = new javax.swing.JDialog();
         panelIconoAviso = new javax.swing.JPanel();
         labelMensaje = new javax.swing.JLabel();
         menuPrincipal = new javax.swing.JFrame();
@@ -80,8 +80,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         jLabel14 = new javax.swing.JLabel();
         panelVacio3 = new javax.swing.JPanel();
 
-
-        registroUsuario.getContentPane().setLayout(new java.awt.GridLayout());
+        registroUsuario.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout panelVacio1RegistroLayout = new javax.swing.GroupLayout(panelVacio1Registro);
         panelVacio1Registro.setLayout(panelVacio1RegistroLayout);
@@ -198,7 +197,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         registroUsuario.getContentPane().add(panelVacio2Registro);
 
-        logIn.getContentPane().setLayout(new java.awt.GridLayout());
+        logIn.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout panelVacio1LoginLayout = new javax.swing.GroupLayout(panelVacio1Login);
         panelVacio1Login.setLayout(panelVacio1LoginLayout);
@@ -213,10 +212,10 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         logIn.getContentPane().add(panelVacio1Login);
 
-        textFieldPasswordUsuario1.setToolTipText("Contraseña");
-        textFieldPasswordUsuario1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        textFieldPasswordUsuario1.setMinimumSize(new java.awt.Dimension(50, 100));
-        textFieldPasswordUsuario1.setPreferredSize(new java.awt.Dimension(50, 100));
+        textFieldPasswordUsuarioLogIn.setToolTipText("Contraseña");
+        textFieldPasswordUsuarioLogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        textFieldPasswordUsuarioLogIn.setMinimumSize(new java.awt.Dimension(50, 100));
+        textFieldPasswordUsuarioLogIn.setPreferredSize(new java.awt.Dimension(50, 100));
 
         labelSuperiorRegistro1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         labelSuperiorRegistro1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -228,26 +227,26 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         jLabel12.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
         jLabel12.setText("Nombre:");
 
-        textFieldNombreUsuario1.setToolTipText("Nombre");
-        textFieldNombreUsuario1.setMinimumSize(new java.awt.Dimension(50, 100));
-        textFieldNombreUsuario1.setPreferredSize(new java.awt.Dimension(50, 100));
+        textFieldNombreUsuarioLogIn.setToolTipText("Nombre");
+        textFieldNombreUsuarioLogIn.setMinimumSize(new java.awt.Dimension(50, 100));
+        textFieldNombreUsuarioLogIn.setPreferredSize(new java.awt.Dimension(50, 100));
 
-        btnEnviar2.setPreferredSize(new java.awt.Dimension(72, 24));
+        btnEnviarLogIn.setPreferredSize(new java.awt.Dimension(72, 24));
 
         javax.swing.GroupLayout panelCentralLoginLayout = new javax.swing.GroupLayout(panelCentralLogin);
         panelCentralLogin.setLayout(panelCentralLoginLayout);
         panelCentralLoginLayout.setHorizontalGroup(
             panelCentralLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(textFieldNombreUsuario1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(textFieldNombreUsuarioLogIn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(textFieldPasswordUsuario1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(textFieldPasswordUsuarioLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(labelSuperiorRegistro1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelCentralLoginLayout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addGroup(panelCentralLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnReset2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEnviar2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnResetLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEnviarLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
         panelCentralLoginLayout.setVerticalGroup(
@@ -258,15 +257,15 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addGap(60, 60, 60)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(textFieldNombreUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldNombreUsuarioLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(textFieldPasswordUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldPasswordUsuarioLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
-                .addComponent(btnEnviar2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEnviarLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnReset2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnResetLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -298,28 +297,28 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         labelMensaje.setText("Inicio de sesion fallido");
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
+        javax.swing.GroupLayout dialogLogInFallidoLayout = new javax.swing.GroupLayout(dialogLogInFallido.getContentPane());
+        dialogLogInFallido.getContentPane().setLayout(dialogLogInFallidoLayout);
+        dialogLogInFallidoLayout.setHorizontalGroup(
+            dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(panelIconoAviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
+        dialogLogInFallidoLayout.setVerticalGroup(
+            dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
                 .addGap(124, 124, 124)
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelIconoAviso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(136, Short.MAX_VALUE))
         );
 
-        menuPrincipal.getContentPane().setLayout(new java.awt.GridLayout());
+        menuPrincipal.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout panelVacioLayout = new javax.swing.GroupLayout(panelVacio);
         panelVacio.setLayout(panelVacioLayout);
@@ -408,7 +407,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MPT");
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout panelVacio1Layout = new javax.swing.GroupLayout(panelVacio1);
         panelVacio1.setLayout(panelVacio1Layout);
@@ -534,6 +533,14 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         }
     }//GEN-LAST:event_textFieldEdadUsuarioKeyPressed
 
+    private void btnEnviar2ActionPerformed(java.awt.event.ActionEvent evt) {
+        if (!(gestion_BD.iniciarSesion(this.textFieldNombreUsuarioLogIn.getText(),
+                this.textFieldPasswordUsuarioLogIn.getText()))) { // Si no se puede iniciar sesión
+            this.dialogLogInFallido.setVisible(true);
+            this.logIn.setFocusable(false);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -589,15 +596,15 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton[][] cartasItems;
+    private javax.swing.JButton[][] cartasItems; 
     private javax.swing.JButton btnEnviar1;
-    private javax.swing.JButton btnEnviar2;//TODO PONER EVENTO AL BOTON DE ENVIAR 2
     private javax.swing.JButton btnEnviar3;
+    private javax.swing.JButton btnEnviarLogIn;
     private javax.swing.JButton btnReset1;
-    private javax.swing.JButton btnReset2;
     private javax.swing.JButton btnReset3;
+    private javax.swing.JButton btnResetLogIn;
     private javax.swing.JComboBox<String> comboBoxRegiones;
-    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog dialogLogInFallido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -634,8 +641,8 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JFrame registroUsuario;
     private javax.swing.JTextField textFieldEdadUsuario;
     private javax.swing.JTextField textFieldNombreUsuario;
-    private javax.swing.JTextField textFieldNombreUsuario1;
+    private javax.swing.JTextField textFieldNombreUsuarioLogIn;
     private javax.swing.JTextField textFieldPasswordUsuario;
-    private javax.swing.JTextField textFieldPasswordUsuario1;
+    private javax.swing.JTextField textFieldPasswordUsuarioLogIn;
     // End of variables declaration//GEN-END:variables
 }
