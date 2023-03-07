@@ -232,6 +232,11 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         textFieldNombreUsuarioLogIn.setPreferredSize(new java.awt.Dimension(50, 100));
 
         btnEnviarLogIn.setPreferredSize(new java.awt.Dimension(72, 24));
+        btnEnviarLogIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarLogInActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCentralLoginLayout = new javax.swing.GroupLayout(panelCentralLogin);
         panelCentralLogin.setLayout(panelCentralLoginLayout);
@@ -520,12 +525,11 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     }// </editor-fold>//GEN-END:initComponents
 
     private void textFieldEdadUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldEdadUsuarioKeyPressed
-        String value = this.textFieldEdadUsuario.getText();
         if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
             this.textFieldEdadUsuario.setEditable(true);
             try {
-                Integer.parseInt(value);
-            } catch (Exception e) {
+                Integer.valueOf(this.textFieldEdadUsuario.getText());
+            } catch (NumberFormatException e) {
                 this.textFieldEdadUsuario.setText("");
             }
         } else {
@@ -533,13 +537,13 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         }
     }//GEN-LAST:event_textFieldEdadUsuarioKeyPressed
 
-    private void btnEnviar2ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnEnviarLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarLogInActionPerformed
         if (!(gestion_BD.iniciarSesion(this.textFieldNombreUsuarioLogIn.getText(),
                 this.textFieldPasswordUsuarioLogIn.getText()))) { // Si no se puede iniciar sesión
             this.dialogLogInFallido.setVisible(true);
             this.logIn.setFocusable(false);
         }
-    }
+    }//GEN-LAST:event_btnEnviarLogInActionPerformed
 
     /**
      * @param args the command line arguments
@@ -557,35 +561,29 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewJFrame().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new NewJFrame().setVisible(true);
         });
     }
 
     public void crearEspacioDeCartas(){
-        for (int i = 0; i < cartasItems.length; i++) {
+        for (JButton[] cartasItem : cartasItems) {
             for (int j = 0; j < cartasItems.length; j++) {
-                cartasItems[i][j]=new javax.swing.JButton();//inicio boton
-                panelColeccion.add(cartasItems[i][j]);//añado boton al panel para que se vea
+                cartasItem[j] = new javax.swing.JButton(); //inicio boton
+                panelColeccion.add(cartasItem[j]); //añado boton al panel para que se vea
                 // TODO poner en el actionListener una clase donde se usará el evento cartasItems[j].addActionListener(this);//le digo que el boton lance eventos
-                cartasItems[i][j].addActionListener(this);
-                cartasItems[i][j].setBackground(new Color(245,245,245));//color del fonto del boton
-                cartasItems[i][j].setFocusable(false);//esto hace que no se pueda enfocar el boton y no salga un recuadro raro feo
-                cartasItems[i][j].setFont(new Font("Arial",Font.BOLD,120));//la font de las letras dentro del boton
+                cartasItem[j].addActionListener(this);
+                cartasItem[j].setBackground(new Color(245,245,245)); //color del fonto del boton
+                cartasItem[j].setFocusable(false); //esto hace que no se pueda enfocar el boton y no salga un recuadro raro feo
+                cartasItem[j].setFont(new Font("Arial",Font.BOLD,120)); //la font de las letras dentro del boton
             }
         } 
     }
@@ -596,7 +594,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton[][] cartasItems; 
+    private javax.swing.JButton[][] cartasItems;
     private javax.swing.JButton btnEnviar1;
     private javax.swing.JButton btnEnviar3;
     private javax.swing.JButton btnEnviarLogIn;

@@ -12,15 +12,16 @@ public class Carta {
 
     
     private int rareza, poder, defensa, id;
-    private String nombre, descripcion;
+    private String nombre, descripcion, url;
 
-    public Carta(int id, String nombre, String descripcion, int poder, int defensa, int rareza) {
+    public Carta(int id, String nombre, String descripcion, int poder, int defensa, int rareza, String url) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.poder = poder;
         this.defensa = defensa;
         this.rareza = rareza;
+        this.url = url;
     }
 
     public int getRareza() {
