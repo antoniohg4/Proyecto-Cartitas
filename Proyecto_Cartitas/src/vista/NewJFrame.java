@@ -39,8 +39,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        cartasItems = new javax.swing.JButton[2][10];
-        imagenesCartas=new ArrayList<>();
+
         registroUsuario = new javax.swing.JFrame();
         panelVacio1Registro = new javax.swing.JPanel();
         panelCentralRegistro = new javax.swing.JPanel();
@@ -71,17 +70,29 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         panelVacio2Login = new javax.swing.JPanel();
         dialogLogInFallido = new javax.swing.JDialog();
         panelIconoAviso = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         labelMensaje = new javax.swing.JLabel();
         btnAceptarDialog = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JFrame();
         panelVacio = new javax.swing.JPanel();
         panelCentral = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        labelNumeroMonedas = new javax.swing.JLabel();
         panelColeccion = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        labelColeccion = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         panelVacio2 = new javax.swing.JPanel();
+        btnComprar = new javax.swing.JButton();
+        labelTienda1 = new javax.swing.JLabel();
+        panelMonedas = new javax.swing.JPanel();
+        panelIconoMoneda = new javax.swing.JPanel();
+        labelIconoMoneda = new javax.swing.JLabel();
+        labelNumeroMonedas = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         cartaAmpliada = new javax.swing.JDialog();
+        dialogSobre = new javax.swing.JDialog();
+        jLabel3 = new javax.swing.JLabel();
         panelVacio1 = new javax.swing.JPanel();
         panelCentral1 = new javax.swing.JPanel();
         panelTitulo = new javax.swing.JPanel();
@@ -131,20 +142,24 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         labelSuperiorRegistro.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         labelSuperiorRegistro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelSuperiorRegistro.setText("Registrar");
+        labelSuperiorRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Registrar_label.png"))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
-        jLabel5.setText("Edad:");
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Edad_label.png"))); // NOI18N
+        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jLabel6.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
-        jLabel6.setText("Región: ");
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Region_label.png"))); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
-        jLabel7.setText("Contraseña:");
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Password_label.png"))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
-        jLabel8.setText("Nombre:");
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Nombre_label.png"))); // NOI18N
 
+        btnReset1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Borrar_button.png"))); // NOI18N
+
+        btnEnviarRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Enviar_button.png"))); // NOI18N
         btnEnviarRegistro.setPreferredSize(new java.awt.Dimension(72, 24));
         btnEnviarRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,7 +167,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        btnVolverRegistro.setText("Volver");
+        btnVolverRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Volver_Button_2_190x64.png"))); // NOI18N
         btnVolverRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverRegistroActionPerformed(evt);
@@ -166,7 +181,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             .addComponent(textFieldNombreUsuarioRegistro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(textFieldPasswordUsuarioRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(textFieldEdadUsuarioRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(comboBoxRegionesRegistro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -181,18 +195,19 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             .addGroup(panelCentralRegistroLayout.createSequentialGroup()
                 .addComponent(btnVolverRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelCentralRegistroLayout.setVerticalGroup(
             panelCentralRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCentralRegistroLayout.createSequentialGroup()
                 .addGap(133, 133, 133)
                 .addComponent(labelSuperiorRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addGap(12, 12, 12)
                 .addComponent(textFieldNombreUsuarioRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(textFieldPasswordUsuarioRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -207,8 +222,8 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addComponent(btnEnviarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addComponent(btnReset1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                .addComponent(btnVolverRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107)
+                .addComponent(btnVolverRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -235,7 +250,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         panelVacio1Login.setLayout(panelVacio1LoginLayout);
         panelVacio1LoginLayout.setHorizontalGroup(
             panelVacio1LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 646, Short.MAX_VALUE)
         );
         panelVacio1LoginLayout.setVerticalGroup(
             panelVacio1LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,24 +266,26 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         labelSuperiorRegistro1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         labelSuperiorRegistro1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelSuperiorRegistro1.setText("Iniciar sesión");
+        labelSuperiorRegistro1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/IniciarSesion_label.png"))); // NOI18N
 
         labelNombreLogIn.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
-        labelNombreLogIn.setText("Nombre:");
+        labelNombreLogIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Nombre_label.png"))); // NOI18N
 
         labelPWDLogIn.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
-        labelPWDLogIn.setText("Contraseña:");
+        labelPWDLogIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Password_label.png"))); // NOI18N
 
         textFieldNombreUsuarioLogIn.setToolTipText("Nombre");
         textFieldNombreUsuarioLogIn.setMinimumSize(new java.awt.Dimension(50, 100));
         textFieldNombreUsuarioLogIn.setPreferredSize(new java.awt.Dimension(50, 100));
 
+        btnResetLogIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Borrar_button.png"))); // NOI18N
         btnResetLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnResetLogInActionPerformed(evt);
             }
         });
 
+        btnEnviarLogIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Enviar_button.png"))); // NOI18N
         btnEnviarLogIn.setPreferredSize(new java.awt.Dimension(72, 24));
         btnEnviarLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -276,7 +293,11 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        btnVolverLogIn.setText("Volver");
+        btnVolverLogIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Volver_Button_2_190x64.png"))); // NOI18N
+        btnVolverLogIn.setContentAreaFilled(false);
+        btnVolverLogIn.setMaximumSize(new java.awt.Dimension(75, 10));
+        btnVolverLogIn.setMinimumSize(new java.awt.Dimension(75, 10));
+        btnVolverLogIn.setPreferredSize(new java.awt.Dimension(75, 10));
         btnVolverLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverLogInActionPerformed(evt);
@@ -302,7 +323,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                     .addGroup(panelCentralLoginLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnVolverLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelCentralLoginLayout.setVerticalGroup(
             panelCentralLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,8 +342,8 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addComponent(btnEnviarLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnResetLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
-                .addComponent(btnVolverLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
+                .addComponent(btnVolverLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -332,7 +353,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         panelVacio2Login.setLayout(panelVacio2LoginLayout);
         panelVacio2LoginLayout.setHorizontalGroup(
             panelVacio2LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGap(0, 646, Short.MAX_VALUE)
         );
         panelVacio2LoginLayout.setVerticalGroup(
             panelVacio2LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,20 +368,26 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             }
         });
 
+        jLabel2.setText("//TODO icono");
+
         javax.swing.GroupLayout panelIconoAvisoLayout = new javax.swing.GroupLayout(panelIconoAviso);
         panelIconoAviso.setLayout(panelIconoAvisoLayout);
         panelIconoAvisoLayout.setHorizontalGroup(
             panelIconoAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelIconoAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
         panelIconoAvisoLayout.setVerticalGroup(
             panelIconoAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelIconoAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
         );
 
-        labelMensaje.setText("Inicio de sesion fallido");
+        labelMensaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/ErrorLogin_label.png"))); // NOI18N
 
-        btnAceptarDialog.setText("Aceptar");
+        btnAceptarDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Volver_Button_2_190x64.png"))); // NOI18N
         btnAceptarDialog.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAceptarDialogActionPerformed(evt);
@@ -374,14 +401,14 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
                 .addGroup(dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
-                        .addGap(89, 89, 89)
+                        .addGap(132, 132, 132)
                         .addComponent(panelIconoAviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(labelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
-                        .addGap(281, 281, 281)
+                        .addGap(246, 246, 246)
                         .addComponent(btnAceptarDialog)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         dialogLogInFallidoLayout.setVerticalGroup(
             dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,9 +417,9 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addGroup(dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelIconoAviso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addComponent(btnAceptarDialog)
-                .addGap(20, 20, 20))
+                .addGap(32, 32, 32))
         );
 
         menuPrincipal.setMinimumSize(new java.awt.Dimension(1920, 1080));
@@ -417,74 +444,161 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         menuPrincipal.getContentPane().add(panelVacio);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 0));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        labelNumeroMonedas.setText("NUMERO DE MONEDAS");
-
         jLabel1.setText("AQUI VA EL BUCLE QUE METE LAS CARTAS");
+
+        labelColeccion.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        labelColeccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelColeccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Coleccion_label.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 115, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout panelColeccionLayout = new javax.swing.GroupLayout(panelColeccion);
         panelColeccion.setLayout(panelColeccionLayout);
         panelColeccionLayout.setHorizontalGroup(
             panelColeccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelColeccionLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelColeccionLayout.createSequentialGroup()
+                .addGap(201, 201, 201)
                 .addComponent(jLabel1)
-                .addGap(206, 206, 206))
+                .addContainerGap(213, Short.MAX_VALUE))
+            .addComponent(labelColeccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelColeccionLayout.setVerticalGroup(
             panelColeccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelColeccionLayout.createSequentialGroup()
-                .addGap(127, 127, 127)
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelColeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81)
                 .addComponent(jLabel1)
-                .addContainerGap(813, Short.MAX_VALUE))
+                .addContainerGap(754, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelCentralLayout = new javax.swing.GroupLayout(panelCentral);
         panelCentral.setLayout(panelCentralLayout);
         panelCentralLayout.setHorizontalGroup(
             panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCentralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelNumeroMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
             .addComponent(panelColeccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelCentralLayout.setVerticalGroup(
             panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCentralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelNumeroMonedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(panelColeccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panelColeccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         menuPrincipal.getContentPane().add(panelCentral);
+
+        btnComprar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Comprar_button_1.png"))); // NOI18N
+        btnComprar.setPreferredSize(new java.awt.Dimension(72, 24));
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarActionPerformed(evt);
+            }
+        });
+
+        labelTienda1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        labelTienda1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTienda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Tienda_label.png"))); // NOI18N
+
+        labelIconoMoneda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelIconoMoneda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/coin.png"))); // NOI18N
+        labelIconoMoneda.setFocusable(false);
+        labelIconoMoneda.setIconTextGap(0);
+        labelIconoMoneda.setPreferredSize(new java.awt.Dimension(100, 100));
+
+        javax.swing.GroupLayout panelIconoMonedaLayout = new javax.swing.GroupLayout(panelIconoMoneda);
+        panelIconoMoneda.setLayout(panelIconoMonedaLayout);
+        panelIconoMonedaLayout.setHorizontalGroup(
+            panelIconoMonedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelIconoMoneda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        panelIconoMonedaLayout.setVerticalGroup(
+            panelIconoMonedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelIconoMoneda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        labelNumeroMonedas.setText("NUMERO DE MONEDAS");
+
+        javax.swing.GroupLayout panelMonedasLayout = new javax.swing.GroupLayout(panelMonedas);
+        panelMonedas.setLayout(panelMonedasLayout);
+        panelMonedasLayout.setHorizontalGroup(
+            panelMonedasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelMonedasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelMonedasLayout.createSequentialGroup()
+                    .addGap(78, 78, 78)
+                    .addComponent(panelIconoMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(labelNumeroMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(78, Short.MAX_VALUE)))
+        );
+        panelMonedasLayout.setVerticalGroup(
+            panelMonedasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 115, Short.MAX_VALUE)
+            .addGroup(panelMonedasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelMonedasLayout.createSequentialGroup()
+                    .addGap(9, 9, 9)
+                    .addGroup(panelMonedasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(panelIconoMoneda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelNumeroMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Compra cuanto quieras, esta versión no");
+        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel9.setText("contempla el balance de monedas");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel10.setText("negativo.");
 
         javax.swing.GroupLayout panelVacio2Layout = new javax.swing.GroupLayout(panelVacio2);
         panelVacio2.setLayout(panelVacio2Layout);
         panelVacio2Layout.setHorizontalGroup(
             panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+            .addGroup(panelVacio2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelMonedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelTienda1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(122, 122, 122))
         );
         panelVacio2Layout.setVerticalGroup(
             panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGroup(panelVacio2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelTienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 459, Short.MAX_VALUE)
+                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addGap(158, 158, 158))
         );
 
         menuPrincipal.getContentPane().add(panelVacio2);
@@ -498,6 +612,25 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         cartaAmpliadaLayout.setVerticalGroup(
             cartaAmpliadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        jLabel3.setText("jLabel3");
+
+        javax.swing.GroupLayout dialogSobreLayout = new javax.swing.GroupLayout(dialogSobre.getContentPane());
+        dialogSobre.getContentPane().setLayout(dialogSobreLayout);
+        dialogSobreLayout.setHorizontalGroup(
+            dialogSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogSobreLayout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(jLabel3)
+                .addContainerGap(210, Short.MAX_VALUE))
+        );
+        dialogSobreLayout.setVerticalGroup(
+            dialogSobreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogSobreLayout.createSequentialGroup()
+                .addGap(123, 123, 123)
+                .addComponent(jLabel3)
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -523,7 +656,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         labelMPT.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         labelMPT.setForeground(new java.awt.Color(0, 0, 0));
         labelMPT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelMPT.setText("MPT");
+        labelMPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/logo_250x250.png"))); // NOI18N
 
         javax.swing.GroupLayout panelTituloLayout = new javax.swing.GroupLayout(panelTitulo);
         panelTitulo.setLayout(panelTituloLayout);
@@ -535,12 +668,13 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         );
         panelTituloLayout.setVerticalGroup(
             panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTituloLayout.createSequentialGroup()
-                .addContainerGap(77, Short.MAX_VALUE)
-                .addComponent(labelMPT, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(panelTituloLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelMPT, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
+        btnIniciarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/IniciarSesion_button.png"))); // NOI18N
         btnIniciarSesion.setPreferredSize(new java.awt.Dimension(72, 24));
         btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -548,6 +682,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             }
         });
 
+        btnRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Registrar_button.png"))); // NOI18N
         btnRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistroActionPerformed(evt);
@@ -655,6 +790,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     }//GEN-LAST:event_btnRegistroActionPerformed
 
     private void btnAceptarDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarDialogActionPerformed
+        this.dialogLogInFallido.setVisible(false);
         this.textFieldNombreUsuarioLogIn.setText("");
         this.textFieldPasswordUsuarioLogIn.setText("");
     }//GEN-LAST:event_btnAceptarDialogActionPerformed
@@ -679,6 +815,20 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         crearEspacioDeCartas();
     }//GEN-LAST:event_menuPrincipalFocusGained
 
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
+        ArrayList<Carta> listaCartasSobre = Juego.abrirSobre();
+        
+        //TODO que lo muestre en el dialog
+        
+    }//GEN-LAST:event_btnComprarActionPerformed
+
+    public void mostrarDialogoLogInFallido(){
+        this.dialogLogInFallido.setVisible(true);
+        this.setFocusable(false);
+    }
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -724,6 +874,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptarDialog;
+    private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnEnviarLogIn;
     private javax.swing.JButton btnEnviarRegistro;
     private javax.swing.JButton btnIniciarSesion;
@@ -735,12 +886,20 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JDialog cartaAmpliada;
     private javax.swing.JComboBox<String> comboBoxRegionesRegistro;
     private javax.swing.JDialog dialogLogInFallido;
+    private javax.swing.JDialog dialogSobre;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelColeccion;
+    private javax.swing.JLabel labelIconoMoneda;
     private javax.swing.JLabel labelMPT;
     private javax.swing.JLabel labelMensaje;
     private javax.swing.JLabel labelNombreLogIn;
@@ -748,6 +907,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel labelPWDLogIn;
     private javax.swing.JLabel labelSuperiorRegistro;
     private javax.swing.JLabel labelSuperiorRegistro1;
+    private javax.swing.JLabel labelTienda1;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JFrame logIn;
     private javax.swing.JFrame menuPrincipal;
@@ -757,6 +917,8 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JPanel panelCentralRegistro;
     private javax.swing.JPanel panelColeccion;
     private javax.swing.JPanel panelIconoAviso;
+    private javax.swing.JPanel panelIconoMoneda;
+    private javax.swing.JPanel panelMonedas;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JPanel panelVacio;
     private javax.swing.JPanel panelVacio1;

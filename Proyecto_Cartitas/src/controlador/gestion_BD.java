@@ -10,7 +10,7 @@ import modelo.EnumRegiones;
  * @author DAM-2
  */
 public class gestion_BD {
-    
+    private static final int PRECIO_SOBRE = 100;
     static Connection con = null;
     
     /**
@@ -116,9 +116,8 @@ public class gestion_BD {
 
     /**
      * Inserta las 20 cartas del juego
-     * @param con 
      */
-    public void InsertsCartas(Connection con){
+    public static void insertsCartas(){
         Statement st;
         String sql;
         try {
@@ -128,36 +127,36 @@ public class gestion_BD {
                 cartas(idCarta,nombre,descripcion,ataque,vida,rareza,url_imagen)
                 VALUES
                 (1,'Rey','Larga vida al rey... O no.',1,4,3,'src/resources/img/rey_card.png'),
-                (2,'Reina','Mi padre quer\u00eda unir los reinos.',4,1,3,'src/resources/img/reina_card.png'),
-                (3,'Buf\u00f3n','Tener contento al castillo es importante.',2,7,1,'src/resources/img/bufon_card.png'),
+                (2,'Reina','Mi padre quería unir los reinos.',4,1,3,'src/resources/img/reina_card.png'),
+                (3,'Bufon','Tener contento al castillo es importante.',2,7,1,'src/resources/img/bufon_card.png'),
                 (4,'Payaso','La plebe necesita entretenimiento.',2,6,1,'src/resources/img/payaso_card.png'),
                 (5,'Caballero','Defender y morir por el reino.',7,9,2,'src/resources/img/caballero_card.png'),
                 (6,'Verdugo','Los malhechores deben ser castigados',7,4,2,'src/resources/img/verdugo_card.png'),
                 (7,'Granjero','No me pises lo sembrado.',3,5,1,'src/resources/img/granjero_card.png'),
-                (8,'Herrero','Esa espada est\u00e1 un poco mellada.',6,6,1,'src/resources/img/herrero_card.png'),
+                (8,'Herrero','Esa espada está un poco mellada.',6,6,1,'src/resources/img/herrero_card.png'),
                 (9,'Sacerdote','Por la fe de Dios.',1,7,1,'src/resources/img/sacerdote_card.png'),
-                (10,'Cultista','\u00bfNi\u00f1os raptados? Pregunta al sacerdote.',8,6,1,'src/resources/img/cultista_card.png'),
-                (11,'\u00c1ngel','Hay que combatir el mal.',6,7,2,'src/resources/img/angel_card.png'),
+                (10,'Cultista','¿Niños raptados? Pregunta al sacerdote.',8,6,1,'src/resources/img/cultista_card.png'),
+                (11,'Angel','Hay que combatir el mal.',6,7,2,'src/resources/img/angel_card.png'),
                 (12,'Demonio','Ser malo es divertido',7,6,2,'src/resources/img/demonio_card.png'),
                 (13,'Mago','El conocimiento es poder.',9,2,2,'src/resources/img/mago_card.png'),
-                (14,'Druida','S\u00ed, aquel oso era yo',8,8,2,'src/resources/img/druida_card.png'),
-                (15,'Alquimista','\u00bfQuieres una poci\u00f3n de la risa?',4,7,1,'src/resources/img/alquimista_card.png'),
-                (16,'Cazador','Sol\u00eda ser un caballero, pero una flecha me dio en la rodilla.',7,5,1,'src/resources/img/cazador.png'),
-                (17,'Pirata','La X me trajo hasta aqu\u00ed',5,3,1,'src/resources/img/pirata_card.png'),
-                (18,'Elfo','\u00bfPor qu\u00e9 vivir si no es para amar?',3,10,3,'src/resources/img/elfo_card.png'),
-                (19,'Orco','\u00a1Tiempo de matar!',10,7,3,'src/resources/img/orco_card.png'),
-                (20,'Viajero del Tiempo','Pues s\u00ed que todo esto era campo...',10,10,4,'src/resources/img/viajero_card.png');
+                (14,'Druida','Sí, aquel oso era yo',8,8,2,'src/resources/img/druida_card.png'),
+                (15,'Alquimista','¿Quieres una poción de la risa?',4,7,1,'src/resources/img/alquimista_card.png'),
+                (16,'Cazador','Solía ser un caballero, pero una flecha me dio en la rodilla.',7,5,1,'src/resources/img/cazador.png'),
+                (17,'Pirata','La X me trajo hasta aquí',5,3,1,'src/resources/img/pirata_card.png'),
+                (18,'Elfo','¿Por qué vivir si no es para amar?',3,10,3,'src/resources/img/elfo_card.png'),
+                (19,'Orco','¡Tiempo de matar!',10,7,3,'src/resources/img/orco_card.png'),
+                (20,'Viajero del Tiempo','Pues sí que todo esto era campo...',10,10,4,'src/resources/img/viajero_card.png');
                 """;
             st.addBatch(sql);
             
             int [] numUpdates=st.executeBatch();
-			for (int i = 0; i < numUpdates.length; i++) {
-				if (numUpdates[i] == Statement.SUCCESS_NO_INFO) {
-					System.out.println("Execution " + i + ": unknown number of rows updated");
-				} else {
-					System.out.println("Execution " + i + "successful: " + numUpdates[i] + " rows updated");
-				}
-			}
+            for (int i = 0; i < numUpdates.length; i++) {
+                    if (numUpdates[i] == Statement.SUCCESS_NO_INFO) {
+                            System.out.println("Execution " + i + ": unknown number of rows updated");
+                    } else {
+                            System.out.println("Execution " + i + "successful: " + numUpdates[i] + " rows updated");
+                    }
+            }
             con.commit();
             //cerramos el statement este.
             st.close();
@@ -249,7 +248,6 @@ public class gestion_BD {
      */
     public static ArrayList<Carta> getColeccionCartas(Connection con, String nombreJugador){
         ArrayList<Carta> listaCartas = new ArrayList<Carta>();
-        //TODO Select de las cartas
         
         try {
             PreparedStatement st = con.prepareStatement("SELECT * FROM cartas JOIN coleccion USING(IdCarta) WHERE IdUsuario = (SELECT IdUsuario FROM usuario WHERE Nombre = ?) ");
@@ -267,5 +265,49 @@ public class gestion_BD {
             e.printStackTrace();
         }
         return listaCartas;
+    }//getColeccionCartas
+    
+    
+    /**
+     * 
+     * @return 
+     */
+    static ArrayList<Carta> obtenerTodasLasCartas() {
+        ArrayList<Carta> listaTodasCartas = new ArrayList<Carta>();
+        try {
+            Statement st = con.createStatement();
+            
+            ResultSet rs = st.executeQuery("SELECT * FROM cartas");
+            
+            while(rs.next()){
+                Carta c = new Carta(rs.getInt("idCarta"), rs.getString("Nombre"), 
+                              rs.getString("Descripcion"),
+                                  rs.getInt("Ataque"), rs.getInt("Vida"), 
+                                 rs.getInt("Rareza"), rs.getString("URL_Imagen"));
+
+                listaTodasCartas.add(c);
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listaTodasCartas;
+    }//obtenerTodasLasCartas
+    
+    public static void comprar(String nombreUsuario, int monedas){
+        try {
+            monedas = monedas - PRECIO_SOBRE;
+
+            PreparedStatement st = con.prepareStatement("UPDATE mpt_db.usuario SET Monedas = ? WHERE Nombre = ?;");
+
+            st.setInt(1, monedas);
+            st.setString(2, nombreUsuario);
+
+            int rs = st.executeUpdate();
+            //TODO termianr este método, problema del que sea que lo vaya a tocar, me voy a domrir
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
