@@ -189,7 +189,7 @@ public class gestion_BD {
             
             while (rs.next()) {
                 if (rs.getString("pwd").equals(pwd)) {
-                    
+                    inicioSesion = true;
                 }
                 
             }

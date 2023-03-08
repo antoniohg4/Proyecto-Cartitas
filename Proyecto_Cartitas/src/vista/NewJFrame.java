@@ -231,6 +231,12 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         textFieldNombreUsuarioLogIn.setMinimumSize(new java.awt.Dimension(50, 100));
         textFieldNombreUsuarioLogIn.setPreferredSize(new java.awt.Dimension(50, 100));
 
+        btnResetLogIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetLogInActionPerformed(evt);
+            }
+        });
+
         btnEnviarLogIn.setPreferredSize(new java.awt.Dimension(72, 24));
         btnEnviarLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -540,10 +546,19 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private void btnEnviarLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarLogInActionPerformed
         if (!(gestion_BD.iniciarSesion(this.textFieldNombreUsuarioLogIn.getText(),
                 this.textFieldPasswordUsuarioLogIn.getText()))) { // Si no se puede iniciar sesión
+            
             this.dialogLogInFallido.setVisible(true);
             this.logIn.setFocusable(false);
+        }else{
+            this.menuPrincipal.setVisible(true);
+            this.logIn.setVisible(false);
         }
     }//GEN-LAST:event_btnEnviarLogInActionPerformed
+
+    private void btnResetLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetLogInActionPerformed
+        this.textFieldNombreUsuarioLogIn.setText("");
+        this.textFieldPasswordUsuarioLogIn.setText("");
+    }//GEN-LAST:event_btnResetLogInActionPerformed
 
     /**
      * @param args the command line arguments
@@ -594,7 +609,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton[][] cartasItems;
     private javax.swing.JButton btnEnviar1;
     private javax.swing.JButton btnEnviar3;
     private javax.swing.JButton btnEnviarLogIn;
