@@ -7,15 +7,17 @@ package vista;
 import controlador.gestion_BD;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.*;
 import javax.swing.*;
+import modelo.EnumRegiones;
 
 /**
  *
  * @author Antonio
  */
 public class NewJFrame extends javax.swing.JFrame implements ActionListener{
-
+    private javax.swing.JButton[][] cartasItems;
     /**
      * Creates new form NewJFrame
      */
@@ -35,25 +37,25 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         registroUsuario = new javax.swing.JFrame();
         panelVacio1Registro = new javax.swing.JPanel();
         panelCentralRegistro = new javax.swing.JPanel();
-        textFieldPasswordUsuario = new javax.swing.JTextField();
-        comboBoxRegiones = new javax.swing.JComboBox<>();
+        textFieldNombreUsuarioRegistro = new javax.swing.JTextField();
+        textFieldPasswordUsuarioRegistro = new javax.swing.JTextField();
+        textFieldEdadUsuarioRegistro = new javax.swing.JTextField();
+        comboBoxRegionesRegistro = new javax.swing.JComboBox<>();
         labelSuperiorRegistro = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        textFieldNombreUsuario = new javax.swing.JTextField();
-        textFieldEdadUsuario = new javax.swing.JTextField();
         btnReset1 = new javax.swing.JButton();
-        btnEnviar1 = new javax.swing.JButton();
+        btnEnviarRegistro = new javax.swing.JButton();
         panelVacio2Registro = new javax.swing.JPanel();
         logIn = new javax.swing.JFrame();
         panelVacio1Login = new javax.swing.JPanel();
         panelCentralLogin = new javax.swing.JPanel();
         textFieldPasswordUsuarioLogIn = new javax.swing.JTextField();
         labelSuperiorRegistro1 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        labelNombreLogIn = new javax.swing.JLabel();
+        labelPWDLogIn = new javax.swing.JLabel();
         textFieldNombreUsuarioLogIn = new javax.swing.JTextField();
         btnResetLogIn = new javax.swing.JButton();
         btnEnviarLogIn = new javax.swing.JButton();
@@ -69,6 +71,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         panelColeccion = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         panelVacio2 = new javax.swing.JPanel();
+        cartaAmpliada = new javax.swing.JDialog();
         panelVacio1 = new javax.swing.JPanel();
         panelCentral1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -95,12 +98,26 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         registroUsuario.getContentPane().add(panelVacio1Registro);
 
-        textFieldPasswordUsuario.setToolTipText("Contraseña");
-        textFieldPasswordUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        textFieldPasswordUsuario.setMinimumSize(new java.awt.Dimension(50, 100));
-        textFieldPasswordUsuario.setPreferredSize(new java.awt.Dimension(50, 100));
+        textFieldNombreUsuarioRegistro.setToolTipText("Nombre");
+        textFieldNombreUsuarioRegistro.setMinimumSize(new java.awt.Dimension(50, 100));
+        textFieldNombreUsuarioRegistro.setPreferredSize(new java.awt.Dimension(50, 100));
 
-        comboBoxRegiones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUW", "EUNE", "KOR", "NA", "LATAM", "CHI", "JAP", "RUS", "AFR", "OCE" }));
+        textFieldPasswordUsuarioRegistro.setToolTipText("Contraseña");
+        textFieldPasswordUsuarioRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        textFieldPasswordUsuarioRegistro.setMinimumSize(new java.awt.Dimension(50, 100));
+        textFieldPasswordUsuarioRegistro.setPreferredSize(new java.awt.Dimension(50, 100));
+
+        textFieldEdadUsuarioRegistro.setToolTipText("Contraseña");
+        textFieldEdadUsuarioRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        textFieldEdadUsuarioRegistro.setMinimumSize(new java.awt.Dimension(50, 100));
+        textFieldEdadUsuarioRegistro.setPreferredSize(new java.awt.Dimension(50, 100));
+        textFieldEdadUsuarioRegistro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textFieldEdadUsuarioRegistroKeyPressed(evt);
+            }
+        });
+
+        comboBoxRegionesRegistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EUW", "EUNE", "KOR", "NA", "LATAM", "CHI", "JAP", "RUS", "AFR", "OCE" }));
 
         labelSuperiorRegistro.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         labelSuperiorRegistro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,40 +135,31 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         jLabel8.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
         jLabel8.setText("Nombre:");
 
-        textFieldNombreUsuario.setToolTipText("Nombre");
-        textFieldNombreUsuario.setMinimumSize(new java.awt.Dimension(50, 100));
-        textFieldNombreUsuario.setPreferredSize(new java.awt.Dimension(50, 100));
-
-        textFieldEdadUsuario.setToolTipText("Contraseña");
-        textFieldEdadUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        textFieldEdadUsuario.setMinimumSize(new java.awt.Dimension(50, 100));
-        textFieldEdadUsuario.setPreferredSize(new java.awt.Dimension(50, 100));
-        textFieldEdadUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                textFieldEdadUsuarioKeyPressed(evt);
+        btnEnviarRegistro.setPreferredSize(new java.awt.Dimension(72, 24));
+        btnEnviarRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarRegistroActionPerformed(evt);
             }
         });
-
-        btnEnviar1.setPreferredSize(new java.awt.Dimension(72, 24));
 
         javax.swing.GroupLayout panelCentralRegistroLayout = new javax.swing.GroupLayout(panelCentralRegistro);
         panelCentralRegistro.setLayout(panelCentralRegistroLayout);
         panelCentralRegistroLayout.setHorizontalGroup(
             panelCentralRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(textFieldNombreUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(textFieldNombreUsuarioRegistro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(textFieldPasswordUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(textFieldPasswordUsuarioRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(textFieldEdadUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(textFieldEdadUsuarioRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(comboBoxRegiones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(comboBoxRegionesRegistro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(labelSuperiorRegistro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelCentralRegistroLayout.createSequentialGroup()
                 .addGap(143, 143, 143)
                 .addGroup(panelCentralRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnReset1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEnviarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
         panelCentralRegistroLayout.setVerticalGroup(
@@ -162,21 +170,21 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addGap(60, 60, 60)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(textFieldNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldNombreUsuarioRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(textFieldPasswordUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldPasswordUsuarioRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(textFieldEdadUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textFieldEdadUsuarioRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(comboBoxRegiones, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboBoxRegionesRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
-                .addComponent(btnEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEnviarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addComponent(btnReset1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -221,11 +229,11 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         labelSuperiorRegistro1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelSuperiorRegistro1.setText("Iniciar sesión");
 
-        jLabel11.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
-        jLabel11.setText("Contraseña:");
+        labelNombreLogIn.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
+        labelNombreLogIn.setText("Nombre:");
 
-        jLabel12.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
-        jLabel12.setText("Nombre:");
+        labelPWDLogIn.setFont(new java.awt.Font("Dogica Pixel", 0, 24)); // NOI18N
+        labelPWDLogIn.setText("Contraseña:");
 
         textFieldNombreUsuarioLogIn.setToolTipText("Nombre");
         textFieldNombreUsuarioLogIn.setMinimumSize(new java.awt.Dimension(50, 100));
@@ -249,9 +257,9 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         panelCentralLoginLayout.setHorizontalGroup(
             panelCentralLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(textFieldNombreUsuarioLogIn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelPWDLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(textFieldPasswordUsuarioLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelNombreLogIn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(labelSuperiorRegistro1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelCentralLoginLayout.createSequentialGroup()
                 .addGap(143, 143, 143)
@@ -266,11 +274,11 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addGap(133, 133, 133)
                 .addComponent(labelSuperiorRegistro1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelNombreLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(textFieldNombreUsuarioLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(labelPWDLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(textFieldPasswordUsuarioLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59)
@@ -416,6 +424,17 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         menuPrincipal.getContentPane().add(panelVacio2);
 
+        javax.swing.GroupLayout cartaAmpliadaLayout = new javax.swing.GroupLayout(cartaAmpliada.getContentPane());
+        cartaAmpliada.getContentPane().setLayout(cartaAmpliadaLayout);
+        cartaAmpliadaLayout.setHorizontalGroup(
+            cartaAmpliadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        cartaAmpliadaLayout.setVerticalGroup(
+            cartaAmpliadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MPT");
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
@@ -530,18 +549,18 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textFieldEdadUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldEdadUsuarioKeyPressed
+    private void textFieldEdadUsuarioRegistroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldEdadUsuarioRegistroKeyPressed
         if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
-            this.textFieldEdadUsuario.setEditable(true);
+            this.textFieldEdadUsuarioRegistro.setEditable(true);
             try {
-                Integer.valueOf(this.textFieldEdadUsuario.getText());
+                Integer.valueOf(this.textFieldEdadUsuarioRegistro.getText());
             } catch (NumberFormatException e) {
-                this.textFieldEdadUsuario.setText("");
+                this.textFieldEdadUsuarioRegistro.setText("");
             }
         } else {
-            this.textFieldEdadUsuario.setText("* Enter only numeric digits(0-9)");
+            this.textFieldEdadUsuarioRegistro.setText("* Introduce solo números(0-9)");
         }
-    }//GEN-LAST:event_textFieldEdadUsuarioKeyPressed
+    }//GEN-LAST:event_textFieldEdadUsuarioRegistroKeyPressed
 
     private void btnEnviarLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarLogInActionPerformed
         if (!(gestion_BD.iniciarSesion(this.textFieldNombreUsuarioLogIn.getText(),
@@ -560,6 +579,20 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         this.textFieldPasswordUsuarioLogIn.setText("");
     }//GEN-LAST:event_btnResetLogInActionPerformed
 
+    private void btnEnviarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarRegistroActionPerformed
+        if (gestion_BD.altaUsuario( textFieldNombreUsuarioRegistro.getText(),
+                                    textFieldPasswordUsuarioRegistro.getText(),
+                                    Integer.parseInt(textFieldEdadUsuarioRegistro.getText()),
+                                    comboBoxRegionesRegistro.getSelectedItem().toString())) {
+            
+        }
+    }//GEN-LAST:event_btnEnviarRegistroActionPerformed
+
+    
+
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -603,24 +636,18 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         } 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-            //TODO METER EVENTOS
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEnviar1;
     private javax.swing.JButton btnEnviar3;
     private javax.swing.JButton btnEnviarLogIn;
+    private javax.swing.JButton btnEnviarRegistro;
     private javax.swing.JButton btnReset1;
     private javax.swing.JButton btnReset3;
     private javax.swing.JButton btnResetLogIn;
-    private javax.swing.JComboBox<String> comboBoxRegiones;
+    private javax.swing.JDialog cartaAmpliada;
+    private javax.swing.JComboBox<String> comboBoxRegionesRegistro;
     private javax.swing.JDialog dialogLogInFallido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -632,6 +659,8 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel labelMensaje;
+    private javax.swing.JLabel labelNombreLogIn;
+    private javax.swing.JLabel labelPWDLogIn;
     private javax.swing.JLabel labelSuperiorRegistro;
     private javax.swing.JLabel labelSuperiorRegistro1;
     private javax.swing.JFrame logIn;
@@ -651,10 +680,25 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JPanel panelVacio2Registro;
     private javax.swing.JPanel panelVacio3;
     private javax.swing.JFrame registroUsuario;
-    private javax.swing.JTextField textFieldEdadUsuario;
-    private javax.swing.JTextField textFieldNombreUsuario;
+    private javax.swing.JTextField textFieldEdadUsuarioRegistro;
     private javax.swing.JTextField textFieldNombreUsuarioLogIn;
-    private javax.swing.JTextField textFieldPasswordUsuario;
+    private javax.swing.JTextField textFieldNombreUsuarioRegistro;
     private javax.swing.JTextField textFieldPasswordUsuarioLogIn;
+    private javax.swing.JTextField textFieldPasswordUsuarioRegistro;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JLabel labelimagen = new JLabel("", JLabel.CENTER);
+        ImageIcon fotoCarta = new ImageIcon(getClass().getResource("/resources/img/Alquimista_card.png"));
+        Image scaledImage = fotoCarta.getImage();
+        scaledImage = scaledImage.getScaledInstance(fotoCarta.getIconWidth()*2, fotoCarta.getIconHeight() * 2, java.awt.Image.SCALE_SMOOTH);
+        fotoCarta = new ImageIcon(scaledImage);
+        labelimagen.setIcon(fotoCarta);
+        labelimagen.setSize(fotoCarta.getIconWidth(), fotoCarta.getIconHeight());
+        cartaAmpliada.add(labelimagen);
+        cartaAmpliada.setSize(fotoCarta.getIconWidth()+16, fotoCarta.getIconHeight()+39);
+        cartaAmpliada.setLocationRelativeTo(null);
+        cartaAmpliada.setVisible(true);
+    }
 }

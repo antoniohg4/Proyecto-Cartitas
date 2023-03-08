@@ -202,7 +202,7 @@ public class gestion_BD {
     /**
      * Da de alta un nuevo usuario
      */
-    public static boolean altaUsuario(String nombre, String pwd, int edad, EnumRegiones reg){
+    public static boolean altaUsuario(String nombre, String pwd, int edad, String reg){
         boolean registrado = false;
         try {
             PreparedStatement pst = con.prepareStatement("INSERT INTO usuario (Nombre, Pwd, Edad, Monedas, Region) VALUES ?, ?, ?, 1000, ?");
@@ -210,7 +210,7 @@ public class gestion_BD {
             pst.setString(1, nombre);
             pst.setString(2, pwd);
             pst.setInt(3, edad);
-            pst.setString(4, reg.toString());
+            pst.setString(4, reg);
             
             int ejecutado = pst.executeUpdate();
             
