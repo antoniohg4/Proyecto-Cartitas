@@ -18,7 +18,7 @@ public class gestion_BD {
      */
     public static void crearConexion(){
         try {                                       
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mtp_db", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "");
             con.setAutoCommit(false);
             System.out.println("Conexion creada");
         } catch (SQLException e) {
@@ -35,10 +35,21 @@ public class gestion_BD {
         try {
             st=con.createStatement();
             sql="CREATE DATABASE IF NOT EXISTS `mpt_db` CHARACTER SET utf8;\n";
-            st.addBatch(sql);
+            st.execute(sql);
+            
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mpt_db", "root", "");
+            con.setAutoCommit(false);
+            
+            st=con.createStatement();
+            
+            /*sql="USE mpt_db;";
+            st.execute(sql);*/
+            
+            st.clearBatch();
 
+            //Importante los " IF NOT EXISTS " porque si no va a tirar excepciones
             sql="""
-                CREATE TABLE `cartas` (
+                CREATE TABLE IF NOT EXISTS `cartas` (
                 `IdCarta` int(11) NOT NULL,
                 `Nombre` varchar(30) NOT NULL,
                 `Ataque` int(11) NOT NULL,
@@ -52,9 +63,9 @@ public class gestion_BD {
             st.addBatch(sql);
 
             sql="""
-                CREATE TABLE `usuario` (
-                `IdUsuario` int(11) NOT NULL,
-                `Nombre` varchar(30) NOT NULL,
+                CREATE TABLE IF NOT EXISTS `usuario` (
+                `IdUsuario` int(11) NOT NULL AUTO_INCREMENT,
+                `Nombre` varchar(30) NOT NULL UNIQUE,
                 `Pwd` varchar(30) NOT NULL,
                 `Edad` int(11) NOT NULL,
                 `Monedas` int(11) NOT NULL,
@@ -65,7 +76,7 @@ public class gestion_BD {
             st.addBatch(sql);
 
             sql="""
-                CREATE TABLE `coleccion` (
+                CREATE TABLE IF NOT EXISTS `coleccion` (
                 `IdColeccion` int(11) NOT NULL,
                 `IdCarta` int(11) NOT NULL,
                 `IdUsuario` int(11) NOT NULL,
@@ -79,14 +90,14 @@ public class gestion_BD {
                 """;
             st.addBatch(sql);
 
-            int [] numUpdates=st.executeBatch();
-			for (int i = 0; i < numUpdates.length; i++) {
-				if (numUpdates[i] == Statement.SUCCESS_NO_INFO) {
-					System.out.println("Execution " + i + ": unknown number of rows updated");
-				} else {
-					System.out.println("Execution " + i + "successful: " + numUpdates[i] + " rows updated");
-				}
-			}
+            /*int [] numUpdates=*/st.executeBatch();
+//			for (int i = 0; i < numUpdates.length; i++) {
+//				if (numUpdates[i] == Statement.SUCCESS_NO_INFO) {
+//					System.out.println("Execution " + i + ": unknown number of rows updated");
+//				} else {
+//					System.out.println("Execution " + i + "successful: " + numUpdates[i] + " rows updated");
+//				}
+//			}
             con.commit();
             //cerramos el statement este.
             st.close();
@@ -203,21 +214,31 @@ public class gestion_BD {
      * Da de alta un nuevo usuario
      */
     public static boolean altaUsuario(String nombre, String pwd, int edad, String reg){
+        System.out.println("Alta usuario");
         boolean registrado = false;
         try {
-            PreparedStatement pst = con.prepareStatement("INSERT INTO usuario (Nombre, Pwd, Edad, Monedas, Region) VALUES ?, ?, ?, 1000, ?");
+            System.out.println(con.getMetaData().getDatabaseProductName());
+            PreparedStatement pst = con.prepareStatement("INSERT INTO mpt_db.usuario (Nombre, Pwd, Edad, Monedas, Region) VALUES (?, ?, ?, 1000, ?)");
             
             pst.setString(1, nombre);
             pst.setString(2, pwd);
             pst.setInt(3, edad);
             pst.setString(4, reg);
+            System.out.println(pst.toString());
+            
+            con.setAutoCommit(true); //TODO Si no está esta línea, no funciona (por algun motivo se ralla que flipas con el executeUpdate y el autocommit false)
             
             int ejecutado = pst.executeUpdate();
-            
+            System.out.println(ejecutado);
             if (ejecutado == 1) {
                 registrado = true;
+                System.out.println("DEBERIA INSERTAR");
             }
+            
+            con.setAutoCommit(false);
+            
         } catch (SQLException e) {
+            e.printStackTrace();
         }
         return registrado;
     }//altaUsuario
@@ -231,7 +252,7 @@ public class gestion_BD {
         //TODO Select de las cartas
         
         try {
-            PreparedStatement st = con.prepareStatement("SELECT DE LAS CARTAS DEL JUGADOR");
+            PreparedStatement st = con.prepareStatement("SELECT * FROM cartas JOIN coleccion USING(IdCarta) WHERE IdUsuario = (SELECT IdUsuario FROM usuario WHERE Nombre = ?) ");
             st.setString(1, nombreJugador);
             
             ResultSet rs = st.executeQuery();
