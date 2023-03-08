@@ -4,12 +4,17 @@
  */
 package vista;
 
+import controlador.Juego;
 import controlador.gestion_BD;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
+
+import modelo.Carta;
 import modelo.EnumRegiones;
 
 /**
@@ -18,6 +23,7 @@ import modelo.EnumRegiones;
  */
 public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JButton[][] cartasItems;
+    private ArrayList <ImageIcon> imagenesCartas;
     /**
      * Creates new form NewJFrame
      */
@@ -33,7 +39,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        cartasItems = new javax.swing.JButton[2][10];
         registroUsuario = new javax.swing.JFrame();
         panelVacio1Registro = new javax.swing.JPanel();
         panelCentralRegistro = new javax.swing.JPanel();
@@ -48,7 +54,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         jLabel8 = new javax.swing.JLabel();
         btnReset1 = new javax.swing.JButton();
         btnEnviarRegistro = new javax.swing.JButton();
-        btnVolverRegistro = new javax.swing.JButton();
         panelVacio2Registro = new javax.swing.JPanel();
         logIn = new javax.swing.JFrame();
         panelVacio1Login = new javax.swing.JPanel();
@@ -60,12 +65,10 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         textFieldNombreUsuarioLogIn = new javax.swing.JTextField();
         btnResetLogIn = new javax.swing.JButton();
         btnEnviarLogIn = new javax.swing.JButton();
-        btnVolverLogIn = new javax.swing.JButton();
         panelVacio2Login = new javax.swing.JPanel();
         dialogLogInFallido = new javax.swing.JDialog();
         panelIconoAviso = new javax.swing.JPanel();
         labelMensaje = new javax.swing.JLabel();
-        btnAceptarDialog = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JFrame();
         panelVacio = new javax.swing.JPanel();
         panelCentral = new javax.swing.JPanel();
@@ -77,15 +80,15 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         cartaAmpliada = new javax.swing.JDialog();
         panelVacio1 = new javax.swing.JPanel();
         panelCentral1 = new javax.swing.JPanel();
-        panelTitulo = new javax.swing.JPanel();
-        labelMPT = new javax.swing.JLabel();
-        btnIniciarSesion = new javax.swing.JButton();
-        btnRegistro = new javax.swing.JButton();
-        labelTitulo = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        btnEnviar3 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        btnReset3 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         panelVacio3 = new javax.swing.JPanel();
 
-        registroUsuario.setMinimumSize(new java.awt.Dimension(1920, 1080));
-        registroUsuario.setResizable(false);
         registroUsuario.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout panelVacio1RegistroLayout = new javax.swing.GroupLayout(panelVacio1Registro);
@@ -145,13 +148,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        btnVolverRegistro.setText("Volver");
-        btnVolverRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverRegistroActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelCentralRegistroLayout = new javax.swing.GroupLayout(panelCentralRegistro);
         panelCentralRegistro.setLayout(panelCentralRegistroLayout);
         panelCentralRegistroLayout.setHorizontalGroup(
@@ -171,9 +167,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                     .addComponent(btnReset1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEnviarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(133, Short.MAX_VALUE))
-            .addGroup(panelCentralRegistroLayout.createSequentialGroup()
-                .addComponent(btnVolverRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelCentralRegistroLayout.setVerticalGroup(
             panelCentralRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,8 +193,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addComponent(btnEnviarRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addComponent(btnReset1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
-                .addComponent(btnVolverRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -220,8 +211,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         registroUsuario.getContentPane().add(panelVacio2Registro);
 
-        logIn.setMinimumSize(new java.awt.Dimension(1920, 1080));
-        logIn.setResizable(false);
         logIn.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout panelVacio1LoginLayout = new javax.swing.GroupLayout(panelVacio1Login);
@@ -269,13 +258,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             }
         });
 
-        btnVolverLogIn.setText("Volver");
-        btnVolverLogIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverLogInActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelCentralLoginLayout = new javax.swing.GroupLayout(panelCentralLogin);
         panelCentralLogin.setLayout(panelCentralLoginLayout);
         panelCentralLoginLayout.setHorizontalGroup(
@@ -286,15 +268,10 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             .addComponent(labelNombreLogIn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(labelSuperiorRegistro1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelCentralLoginLayout.createSequentialGroup()
+                .addGap(143, 143, 143)
                 .addGroup(panelCentralLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCentralLoginLayout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addGroup(panelCentralLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnResetLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEnviarLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelCentralLoginLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnVolverLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnResetLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEnviarLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(133, Short.MAX_VALUE))
         );
         panelCentralLoginLayout.setVerticalGroup(
@@ -314,8 +291,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addComponent(btnEnviarLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnResetLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
-                .addComponent(btnVolverLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -334,12 +309,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         logIn.getContentPane().add(panelVacio2Login);
 
-        dialogLogInFallido.addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                dialogLogInFallidoWindowClosed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelIconoAvisoLayout = new javax.swing.GroupLayout(panelIconoAviso);
         panelIconoAviso.setLayout(panelIconoAvisoLayout);
         panelIconoAvisoLayout.setHorizontalGroup(
@@ -353,27 +322,15 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         labelMensaje.setText("Inicio de sesion fallido");
 
-        btnAceptarDialog.setText("Aceptar");
-        btnAceptarDialog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarDialogActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout dialogLogInFallidoLayout = new javax.swing.GroupLayout(dialogLogInFallido.getContentPane());
         dialogLogInFallido.getContentPane().setLayout(dialogLogInFallidoLayout);
         dialogLogInFallidoLayout.setHorizontalGroup(
             dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
-                .addGroup(dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(panelIconoAviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
-                        .addGap(281, 281, 281)
-                        .addComponent(btnAceptarDialog)))
+                .addGap(89, 89, 89)
+                .addComponent(panelIconoAviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         dialogLogInFallidoLayout.setVerticalGroup(
@@ -383,16 +340,9 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addGroup(dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelIconoAviso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addComponent(btnAceptarDialog)
-                .addGap(20, 20, 20))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
-        menuPrincipal.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                menuPrincipalFocusGained(evt);
-            }
-        });
         menuPrincipal.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout panelVacioLayout = new javax.swing.GroupLayout(panelVacio);
@@ -508,74 +458,83 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         getContentPane().add(panelVacio1);
 
-        panelTitulo.setEnabled(false);
-        panelTitulo.setOpaque(false);
+        jPanel2.setEnabled(false);
+        jPanel2.setOpaque(false);
 
-        labelMPT.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        labelMPT.setForeground(new java.awt.Color(0, 0, 0));
-        labelMPT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelMPT.setText("MPT");
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("MPT");
 
-        javax.swing.GroupLayout panelTituloLayout = new javax.swing.GroupLayout(panelTitulo);
-        panelTitulo.setLayout(panelTituloLayout);
-        panelTituloLayout.setHorizontalGroup(
-            panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelTituloLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelMPT, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
+                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
         );
-        panelTituloLayout.setVerticalGroup(
-            panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelTituloLayout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(77, Short.MAX_VALUE)
-                .addComponent(labelMPT, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        btnIniciarSesion.setPreferredSize(new java.awt.Dimension(72, 24));
-        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIniciarSesionActionPerformed(evt);
-            }
-        });
+        btnEnviar3.setPreferredSize(new java.awt.Dimension(72, 24));
 
-        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistroActionPerformed(evt);
-            }
-        });
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Iniciar sesión");
+        jLabel10.setFocusable(false);
 
-        labelTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        labelTitulo.setForeground(new java.awt.Color(0, 0, 0));
-        labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTitulo.setText("Medieval Pixel Tokens");
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Resgistrar");
+        jLabel13.setFocusable(false);
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Medieval Pixel Tokens");
 
         javax.swing.GroupLayout panelCentral1Layout = new javax.swing.GroupLayout(panelCentral1);
         panelCentral1.setLayout(panelCentral1Layout);
         panelCentral1Layout.setHorizontalGroup(
             panelCentral1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(panelCentral1Layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelCentral1Layout.createSequentialGroup()
                 .addGap(138, 138, 138)
-                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelCentral1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEnviar3, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(panelCentral1Layout.createSequentialGroup()
                 .addGap(138, 138, 138)
-                .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelCentral1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnReset3, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panelCentral1Layout.setVerticalGroup(
             panelCentral1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCentral1Layout.createSequentialGroup()
                 .addGap(2, 2, 2)
-                .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(139, 139, 139)
-                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelCentral1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEnviar3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(78, 78, 78)
-                .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelCentral1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnReset3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         getContentPane().add(panelCentral1);
@@ -635,40 +594,11 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         }
     }//GEN-LAST:event_btnEnviarRegistroActionPerformed
 
-    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        this.logIn.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnIniciarSesionActionPerformed
+    
 
-    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
-        this.registroUsuario.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnRegistroActionPerformed
-
-    private void btnAceptarDialogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarDialogActionPerformed
-        this.textFieldNombreUsuarioLogIn.setText("");
-        this.textFieldPasswordUsuarioLogIn.setText("");
-    }//GEN-LAST:event_btnAceptarDialogActionPerformed
-
-    private void btnVolverLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverLogInActionPerformed
-        this.logIn.setVisible(false);
-        this.setVisible(true);
-    }//GEN-LAST:event_btnVolverLogInActionPerformed
-
-    private void btnVolverRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverRegistroActionPerformed
-        this.registroUsuario.setVisible(false);
-        this.setVisible(true);
-    }//GEN-LAST:event_btnVolverRegistroActionPerformed
-
-    private void dialogLogInFallidoWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dialogLogInFallidoWindowClosed
-        this.textFieldNombreUsuarioLogIn.setText("");
-        this.textFieldPasswordUsuarioLogIn.setText("");
-    }//GEN-LAST:event_dialogLogInFallidoWindowClosed
-
-    private void menuPrincipalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_menuPrincipalFocusGained
-        crearEspacioDeCartas();
-    }//GEN-LAST:event_menuPrincipalFocusGained
-
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -699,46 +629,46 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     }
 
     public void crearEspacioDeCartas(){
-        for (JButton[] cartasItem : cartasItems) {
+        for (int i = 0; i < cartasItems.length; i++) {
             for (int j = 0; j < cartasItems.length; j++) {
-                cartasItem[j] = new javax.swing.JButton(); //inicio boton
-                panelColeccion.add(cartasItem[j]); //añado boton al panel para que se vea
+                cartasItems[i][j] = new javax.swing.JButton(); //inicio boton
+                panelColeccion.add(cartasItems[i][j]); //añado boton al panel para que se vea
                 // TODO poner en el actionListener una clase donde se usará el evento cartasItems[j].addActionListener(this);//le digo que el boton lance eventos
-                cartasItem[j].addActionListener(this);
-                cartasItem[j].setBackground(new Color(245,245,245)); //color del fonto del boton
-                cartasItem[j].setFocusable(false); //esto hace que no se pueda enfocar el boton y no salga un recuadro raro feo
-                cartasItem[j].setFont(new Font("Arial",Font.BOLD,120)); //la font de las letras dentro del boton
+                cartasItems[i][j].addActionListener(this);
+                cartasItems[i][j].setBackground(new Color(245,245,245)); //color del fonto del boton
+                cartasItems[i][j].setFocusable(false); //esto hace que no se pueda enfocar el boton y no salga un recuadro raro feo
+                cartasItems[i][j].setFont(new Font("Arial",Font.BOLD,120)); //la font de las letras dentro del boton
             }
         } 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptarDialog;
+    private javax.swing.JButton btnEnviar3;
     private javax.swing.JButton btnEnviarLogIn;
     private javax.swing.JButton btnEnviarRegistro;
-    private javax.swing.JButton btnIniciarSesion;
-    private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnReset1;
+    private javax.swing.JButton btnReset3;
     private javax.swing.JButton btnResetLogIn;
-    private javax.swing.JButton btnVolverLogIn;
-    private javax.swing.JButton btnVolverRegistro;
     private javax.swing.JDialog cartaAmpliada;
     private javax.swing.JComboBox<String> comboBoxRegionesRegistro;
     private javax.swing.JDialog dialogLogInFallido;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel labelMPT;
     private javax.swing.JLabel labelMensaje;
     private javax.swing.JLabel labelNombreLogIn;
     private javax.swing.JLabel labelPWDLogIn;
     private javax.swing.JLabel labelSuperiorRegistro;
     private javax.swing.JLabel labelSuperiorRegistro1;
-    private javax.swing.JLabel labelTitulo;
     private javax.swing.JFrame logIn;
     private javax.swing.JFrame menuPrincipal;
     private javax.swing.JPanel panelCentral;
@@ -747,7 +677,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JPanel panelCentralRegistro;
     private javax.swing.JPanel panelColeccion;
     private javax.swing.JPanel panelIconoAviso;
-    private javax.swing.JPanel panelTitulo;
     private javax.swing.JPanel panelVacio;
     private javax.swing.JPanel panelVacio1;
     private javax.swing.JPanel panelVacio1Login;
@@ -766,6 +695,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         JLabel labelimagen = new JLabel("", JLabel.CENTER);
         ImageIcon fotoCarta = new ImageIcon(getClass().getResource("/resources/img/Alquimista_card.png"));
         Image scaledImage = fotoCarta.getImage();
@@ -777,5 +707,13 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         cartaAmpliada.setSize(fotoCarta.getIconWidth()+16, fotoCarta.getIconHeight()+39);
         cartaAmpliada.setLocationRelativeTo(null);
         cartaAmpliada.setVisible(true);
+    }
+
+    public void cargarFotosCartas(ArrayList <Carta> listaTodasCartas) {
+        imagenesCartas.clear();
+        for (Carta carta : Juego.mostrarImgColeccion()) {
+            imagenesCartas.add(new ImageIcon(getClass().getResource(carta.getUrl())));
+        }
+        
     }
 }

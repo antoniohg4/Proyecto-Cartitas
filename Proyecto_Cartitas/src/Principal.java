@@ -1,6 +1,5 @@
 import java.sql.*;
 import controlador.gestion_BD;
-import vista.NewJFrame;
 
 /**
  *
@@ -12,9 +11,6 @@ public class Principal {
     public static void main(String[] args) {
         gestion_BD.crearConexion(); //Crea la conexión con la BD
         gestion_BD.creacionBD(); //Crea la BD
-        NewJFrame frame = new NewJFrame();
-        
-        frame.setVisible(true);
     }
     
 }

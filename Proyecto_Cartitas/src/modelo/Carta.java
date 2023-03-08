@@ -24,6 +24,10 @@ public class Carta {
         this.url = url;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
     public int getRareza() {
         return rareza;
     }

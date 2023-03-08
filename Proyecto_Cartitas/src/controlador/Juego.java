@@ -1,7 +1,5 @@
 package controlador;
 
-
-import controlador.gestion_BD;
 import java.util.ArrayList;
 import java.util.Random;
 import modelo.Carta;
@@ -9,6 +7,8 @@ import modelo.Carta;
 
 public class Juego {
     private static final int NUMERO_DE_CARTAS_POR_SOBRE = 3;
+
+    public static ArrayList<Carta> coleccion = new ArrayList<Carta>();
     
     public static ArrayList<Carta> abrirSobre(){
        // ArrayList <Carta> listaTodasCartas = gestion_BD.obtenerTodasLasCartas();
@@ -22,5 +22,9 @@ public class Juego {
         }
         
         return sobre;
+    }
+
+    public static ArrayList<Carta> mostrarImgColeccion(){
+        return coleccion;
     }
 }
