@@ -17,8 +17,8 @@ public class gestion_BD {
      * Crea la conexion a la BD y establece autoCommit a false
      */
     public static void crearConexion(){
-        try {                                       //TODO poner la base de datos bien
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BBDD", "root", "");
+        try {                                       
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mtp_db", "root", "");
             con.setAutoCommit(false);
             System.out.println("Conexion creada");
         } catch (SQLException e) {
