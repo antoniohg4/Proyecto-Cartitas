@@ -23,7 +23,8 @@ import modelo.EnumRegiones;
  */
 public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JButton[][] cartasItems;
-     private ArrayList <ImageIcon> imagenesCartas;
+    private ArrayList <ImageIcon> imagenesCartas;
+    private int[] BTN_LONG={2,10};// La longitud del array de botones.
     /**
      * Creates new form NewJFrame
      */
@@ -39,12 +40,15 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        panelColeccion = new javax.swing.JPanel();
+        cartasItems = new javax.swing.JButton[BTN_LONG[0]][BTN_LONG[1]];
+        imagenesCartas = new ArrayList<>();
+        crearEspacioDeCartas();
         registroUsuario = new javax.swing.JFrame();
         panelVacio1Registro = new javax.swing.JPanel();
         panelCentralRegistro = new javax.swing.JPanel();
         textFieldNombreUsuarioRegistro = new javax.swing.JTextField();
-        textFieldPasswordUsuarioRegistro = new javax.swing.JTextField();
+        textFieldPasswordUsuarioRegistro = new javax.swing.JPasswordField();
         textFieldEdadUsuarioRegistro = new javax.swing.JTextField();
         comboBoxRegionesRegistro = new javax.swing.JComboBox<>();
         labelSuperiorRegistro = new javax.swing.JLabel();
@@ -59,7 +63,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         logIn = new javax.swing.JFrame();
         panelVacio1Login = new javax.swing.JPanel();
         panelCentralLogin = new javax.swing.JPanel();
-        textFieldPasswordUsuarioLogIn = new javax.swing.JTextField();
+        textFieldPasswordUsuarioLogIn = new javax.swing.JPasswordField();
         labelSuperiorRegistro1 = new javax.swing.JLabel();
         labelNombreLogIn = new javax.swing.JLabel();
         labelPWDLogIn = new javax.swing.JLabel();
@@ -76,7 +80,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         menuPrincipal = new javax.swing.JFrame();
         panelVacio = new javax.swing.JPanel();
         panelCentral = new javax.swing.JPanel();
-        panelColeccion = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         labelColeccion = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -859,17 +862,19 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     }
 
     public void crearEspacioDeCartas(){
-        for (int i = 0; i < cartasItems.length; i++) {
-            for (int j = 0; j < cartasItems.length; j++) {
+        for (int i = 0; i < BTN_LONG[0]; i++) {
+            for (int j = 0; j < BTN_LONG[1]; j++) {
                 cartasItems[i][j] = new javax.swing.JButton(); //inicio boton
                 panelColeccion.add(cartasItems[i][j]); //añado boton al panel para que se vea
-                // TODO poner en el actionListener una clase donde se usará el evento cartasItems[j].addActionListener(this);//le digo que el boton lance eventos
+                ImageIcon fotoCarta = new ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"));
+                cartasItems[i][j].setIcon(fotoCarta);
                 cartasItems[i][j].addActionListener(this);
                 cartasItems[i][j].setBackground(new Color(245,245,245)); //color del fonto del boton
                 cartasItems[i][j].setFocusable(false); //esto hace que no se pueda enfocar el boton y no salga un recuadro raro feo
                 cartasItems[i][j].setFont(new Font("Arial",Font.BOLD,120)); //la font de las letras dentro del boton
             }
         } 
+        panelColeccion.setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -932,8 +937,8 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTextField textFieldEdadUsuarioRegistro;
     private javax.swing.JTextField textFieldNombreUsuarioLogIn;
     private javax.swing.JTextField textFieldNombreUsuarioRegistro;
-    private javax.swing.JTextField textFieldPasswordUsuarioLogIn;
-    private javax.swing.JTextField textFieldPasswordUsuarioRegistro;
+    private javax.swing.JPasswordField textFieldPasswordUsuarioLogIn;
+    private javax.swing.JPasswordField textFieldPasswordUsuarioRegistro;
     // End of variables declaration//GEN-END:variables
 
     @Override
