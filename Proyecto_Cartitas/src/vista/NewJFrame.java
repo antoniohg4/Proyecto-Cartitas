@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.*;
+import java.security.Principal;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -24,6 +25,7 @@ import modelo.EnumRegiones;
 public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JButton[][] cartasItems;
     private ArrayList <ImageIcon> imagenesCartas;
+    private String nombreJugador;
     private int[] BTN_LONG={2,10};// La longitud del array de botones.
     /**
      * Creates new form NewJFrame
@@ -40,15 +42,12 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        panelColeccion = new javax.swing.JPanel();
-        cartasItems = new javax.swing.JButton[BTN_LONG[0]][BTN_LONG[1]];
-        imagenesCartas = new ArrayList<>();
-        crearEspacioDeCartas();
+
         registroUsuario = new javax.swing.JFrame();
         panelVacio1Registro = new javax.swing.JPanel();
         panelCentralRegistro = new javax.swing.JPanel();
         textFieldNombreUsuarioRegistro = new javax.swing.JTextField();
-        textFieldPasswordUsuarioRegistro = new javax.swing.JPasswordField();
+        textFieldPasswordUsuarioRegistro = new javax.swing.JTextField();
         textFieldEdadUsuarioRegistro = new javax.swing.JTextField();
         comboBoxRegionesRegistro = new javax.swing.JComboBox<>();
         labelSuperiorRegistro = new javax.swing.JLabel();
@@ -63,7 +62,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         logIn = new javax.swing.JFrame();
         panelVacio1Login = new javax.swing.JPanel();
         panelCentralLogin = new javax.swing.JPanel();
-        textFieldPasswordUsuarioLogIn = new javax.swing.JPasswordField();
+        textFieldPasswordUsuarioLogIn = new javax.swing.JTextField();
         labelSuperiorRegistro1 = new javax.swing.JLabel();
         labelNombreLogIn = new javax.swing.JLabel();
         labelPWDLogIn = new javax.swing.JLabel();
@@ -80,6 +79,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         menuPrincipal = new javax.swing.JFrame();
         panelVacio = new javax.swing.JPanel();
         panelCentral = new javax.swing.JPanel();
+        panelColeccion = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         labelColeccion = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -161,6 +161,11 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Nombre_label.png"))); // NOI18N
 
         btnReset1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Borrar_button.png"))); // NOI18N
+        btnReset1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReset1ActionPerformed(evt);
+            }
+        });
 
         btnEnviarRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Enviar_button.png"))); // NOI18N
         btnEnviarRegistro.setPreferredSize(new java.awt.Dimension(72, 24));
@@ -365,13 +370,14 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         logIn.getContentPane().add(panelVacio2Login);
 
+        dialogLogInFallido.setPreferredSize(new java.awt.Dimension(640, 360));
         dialogLogInFallido.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 dialogLogInFallidoWindowClosed(evt);
             }
         });
 
-        jLabel2.setText("//TODO icono");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Warning.png"))); // NOI18N
 
         javax.swing.GroupLayout panelIconoAvisoLayout = new javax.swing.GroupLayout(panelIconoAviso);
         panelIconoAviso.setLayout(panelIconoAvisoLayout);
@@ -427,11 +433,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         menuPrincipal.setMinimumSize(new java.awt.Dimension(1920, 1080));
         menuPrincipal.setPreferredSize(new java.awt.Dimension(1920, 1080));
-        menuPrincipal.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                menuPrincipalFocusGained(evt);
-            }
-        });
         menuPrincipal.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout panelVacioLayout = new javax.swing.GroupLayout(panelVacio);
@@ -529,6 +530,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             .addComponent(labelIconoMoneda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        labelNumeroMonedas.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         labelNumeroMonedas.setText("NUMERO DE MONEDAS");
 
         javax.swing.GroupLayout panelMonedasLayout = new javax.swing.GroupLayout(panelMonedas);
@@ -574,17 +576,23 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             .addGroup(panelVacio2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelMonedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelTienda1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(122, 122, 122))
+                    .addGroup(panelVacio2Layout.createSequentialGroup()
+                        .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panelMonedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelTienda1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
+                                .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(122, 122, 122))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
+                                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(110, 110, 110))))))
         );
         panelVacio2Layout.setVerticalGroup(
             panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -593,9 +601,9 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addComponent(panelMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelTienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 459, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 460, Short.MAX_VALUE)
                 .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
@@ -765,6 +773,11 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         }else{
             this.menuPrincipal.setVisible(true);
             this.logIn.setVisible(false);
+            nombreJugador = this.textFieldNombreUsuarioLogIn.getText(); //Si hace login, pilla el texto del textField (que es igual al nombre de la BD)
+            
+            //TODO he metido esto aqui porque en el otro metodo no lo hacia
+            this.labelNumeroMonedas.setText(String.valueOf(gestion_BD.obtenerCantidadMonedas(nombreJugador))); //Pilla las monedas del jugador
+            crearEspacioDeCartas();
         }
     }//GEN-LAST:event_btnEnviarLogInActionPerformed
 
@@ -813,17 +826,22 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         this.textFieldPasswordUsuarioLogIn.setText("");
     }//GEN-LAST:event_dialogLogInFallidoWindowClosed
 
-    private void menuPrincipalFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_menuPrincipalFocusGained
-        this.labelNumeroMonedas.setText(""); //TODO hacer que pille las monedas del jugador
-        crearEspacioDeCartas();
-    }//GEN-LAST:event_menuPrincipalFocusGained
-
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-        ArrayList<Carta> listaCartasSobre = Juego.abrirSobre();
+        ArrayList<Carta> listaCartasSobre = Juego.abrirSobre(); //lista que se va a mostrar en el dialog
         
-        //TODO que lo muestre en el dialog
+        boolean comprado = gestion_BD.comprar(nombreJugador); 
         
+        if (comprado) { //Si el update se ha hecho correctamente
+            this.labelNumeroMonedas.setText(String.valueOf(Integer.parseInt(this.labelNumeroMonedas.getText()) - 100)); //Actualiza el label de las monedas
+        }
     }//GEN-LAST:event_btnComprarActionPerformed
+
+    private void btnReset1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReset1ActionPerformed
+        this.textFieldNombreUsuarioRegistro.setText("");
+        this.textFieldPasswordUsuarioRegistro.setText("");
+        this.textFieldEdadUsuarioRegistro.setText("");
+        this.comboBoxRegionesRegistro.setSelectedItem("EUW");
+    }//GEN-LAST:event_btnReset1ActionPerformed
 
     public void mostrarDialogoLogInFallido(){
         this.dialogLogInFallido.setVisible(true);
@@ -937,8 +955,8 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTextField textFieldEdadUsuarioRegistro;
     private javax.swing.JTextField textFieldNombreUsuarioLogIn;
     private javax.swing.JTextField textFieldNombreUsuarioRegistro;
-    private javax.swing.JPasswordField textFieldPasswordUsuarioLogIn;
-    private javax.swing.JPasswordField textFieldPasswordUsuarioRegistro;
+    private javax.swing.JTextField textFieldPasswordUsuarioLogIn;
+    private javax.swing.JTextField textFieldPasswordUsuarioRegistro;
     // End of variables declaration//GEN-END:variables
 
     @Override

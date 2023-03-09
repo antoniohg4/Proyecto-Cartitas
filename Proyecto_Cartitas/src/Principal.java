@@ -8,6 +8,7 @@ import vista.NewJFrame;
  */
 public class Principal {
     static Connection con = null;
+    public static String nombreJugador = null;
     
     public static void main(String[] args) {
         gestion_BD.crearConexion(); //Crea la conexión con la BD

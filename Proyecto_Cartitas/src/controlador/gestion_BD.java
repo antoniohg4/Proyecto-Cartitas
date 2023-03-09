@@ -11,7 +11,7 @@ import modelo.EnumRegiones;
  */
 public class gestion_BD {
     private static final int PRECIO_SOBRE = 100;
-    private static final int MONEDAS_BASE = 1000; //TODO he puesto una constante para las monedas que le metes al usuario por defecto al inicio (Diego)
+    private static final int MONEDAS_BASE = 1000;
     static Connection con = null;
     
     /**
@@ -123,7 +123,7 @@ public class gestion_BD {
             int numColumnas = rs.getMetaData().getColumnCount();
             boolean hayFilas=false;
             if (rs.next()) {
-                System.out.println("Ya existen cartas dentro");//TODO Esto lo hice para que no de pete porque ya existen las cartas. Porque lo daba. (Diego)
+                System.out.println("Ya existen cartas dentro");
             } else{
                 st=con.createStatement();
                 sql="INSERT INTO\n"+
@@ -205,7 +205,7 @@ public class gestion_BD {
                     inicioSesion = true;
                 }
             }
-            
+            con.commit();
         } catch (SQLException e) {
         }
         return inicioSesion;
@@ -224,11 +224,11 @@ public class gestion_BD {
             pst.setString(1, nombre);
             pst.setString(2, pwd);
             pst.setInt(3, edad);
-            pst.setInt(4, MONEDAS_BASE);//TODO y puse que se ponga aqui la constante de las moneditas que le das al user (Diego) si no te gusta lo dejas como antes
+            pst.setInt(4, MONEDAS_BASE);
             pst.setString(5, reg);
             System.out.println(pst.toString());
             
-            con.setAutoCommit(true); //TODO Si no está esta línea, no funciona (por algun motivo se ralla que flipas con el executeUpdate y el autocommit false)
+            con.setAutoCommit(true); //Si no está esta línea, no funciona (por algun motivo se ralla que flipas con el executeUpdate y el autocommit false)
             
             int ejecutado = pst.executeUpdate();
             System.out.println(ejecutado);
@@ -263,7 +263,7 @@ public class gestion_BD {
 
                   listaCartas.add(c);
               }
-            
+            con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -290,27 +290,49 @@ public class gestion_BD {
 
                 listaTodasCartas.add(c);
             }
-            
+            con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return listaTodasCartas;
     }//obtenerTodasLasCartas
     
-    public static void comprar(String nombreUsuario, int monedas){
+    public static boolean comprar(String nombreUsuario){
+        
+        boolean hecho = false;
+        System.out.println("ENTRA EN COMPRAR");
         try {
-            monedas = monedas - PRECIO_SOBRE;
-
-            PreparedStatement st = con.prepareStatement("UPDATE mpt_db.usuario SET Monedas = ? WHERE Nombre = ?;");
-
-            st.setInt(1, monedas);
-            st.setString(2, nombreUsuario);
+            PreparedStatement st = con.prepareStatement("UPDATE mpt_db.usuario SET Monedas = Monedas - 100 WHERE Nombre = ?;");
+            st.setString(1, nombreUsuario);
 
             int rs = st.executeUpdate();
-            //TODO termianr este método, problema del que sea que lo vaya a tocar, me voy a domrir
             
+            if (rs == 1) { //Si se actualiza
+                hecho = true;
+            }
+            
+            con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        return hecho;
+    }
+    
+    public static int obtenerCantidadMonedas(String nombreUsuario){
+        int cantidadMonedas = 0;
+        try {
+            PreparedStatement st = con.prepareStatement("SELECT Monedas FROM usuario WHERE Nombre = ?");
+            st.setString(1, nombreUsuario);
+            
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+               cantidadMonedas = rs.getInt("Monedas");
+            }
+            con.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cantidadMonedas;
     }
 }
