@@ -180,7 +180,7 @@ public class gestion_BD {
     /**
      * Cierra la conexion a la BD
      */
-    public void cerrarConexion(Connection con){
+    public void cerrarConexion(){
         try {
             con.close();
         } catch (SQLException e) {
@@ -249,7 +249,7 @@ public class gestion_BD {
      * 
      * @return 
      */
-    public static ArrayList<Carta> getColeccionCartas(Connection con, String nombreJugador){
+    public static ArrayList<Carta> getColeccionCartas(String nombreJugador){
         ArrayList<Carta> listaCartas = new ArrayList<Carta>();
         
         try {
