@@ -90,9 +90,10 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         panelIconoMoneda = new javax.swing.JPanel();
         labelIconoMoneda = new javax.swing.JLabel();
         labelNumeroMonedas = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        labelTe = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnIconoSobre = new javax.swing.JButton();
         cartaAmpliada = new javax.swing.JDialog();
         dialogSobre = new javax.swing.JDialog();
         jLabel3 = new javax.swing.JLabel();
@@ -459,7 +460,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         panelColeccionLayout.setHorizontalGroup(
             panelColeccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelSuperiorVacio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelColeccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+            .addComponent(labelColeccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1920, Short.MAX_VALUE)
             .addComponent(panelCartas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelColeccionLayout.setVerticalGroup(
@@ -544,16 +545,23 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Compra cuanto quieras, esta versión no");
-        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        labelTe.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        labelTe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelTe.setText("Compra cuanto quieras, esta versión no");
+        labelTe.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel9.setText("contempla el balance de monedas");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel10.setText("negativo.");
+
+        btnIconoSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
+        btnIconoSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelVacio2Layout = new javax.swing.GroupLayout(panelVacio2);
         panelVacio2.setLayout(panelVacio2Layout);
@@ -565,20 +573,23 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                     .addGroup(panelVacio2Layout.createSequentialGroup()
                         .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panelMonedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelTienda1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
+                            .addComponent(labelTienda1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
+                        .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelVacio2Layout.createSequentialGroup()
                                 .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(labelTe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(122, 122, 122))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
-                                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(110, 110, 110))))))
+                                .addGap(109, 109, 109)))
+                        .addGap(122, 122, 122))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnIconoSobre, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(209, 209, 209))
         );
         panelVacio2Layout.setVerticalGroup(
             panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -587,10 +598,12 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addComponent(panelMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelTienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 460, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
+                .addComponent(btnIconoSobre, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
                 .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(labelTe)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -779,6 +792,8 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                                     comboBoxRegionesRegistro.getSelectedItem().toString())) {
             
         }
+        this.registroUsuario.setVisible(false);
+        this.setVisible(true);
     }//GEN-LAST:event_btnEnviarRegistroActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
@@ -886,6 +901,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnEnviarLogIn;
     private javax.swing.JButton btnEnviarRegistro;
+    private javax.swing.JButton btnIconoSobre;
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnReset1;
@@ -899,7 +915,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -914,6 +929,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel labelPWDLogIn;
     private javax.swing.JLabel labelSuperiorRegistro;
     private javax.swing.JLabel labelSuperiorRegistro1;
+    private javax.swing.JLabel labelTe;
     private javax.swing.JLabel labelTienda1;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JFrame logIn;
