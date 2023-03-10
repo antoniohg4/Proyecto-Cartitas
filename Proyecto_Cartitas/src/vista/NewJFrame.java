@@ -47,7 +47,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         panelVacio1Registro = new javax.swing.JPanel();
         panelCentralRegistro = new javax.swing.JPanel();
         textFieldNombreUsuarioRegistro = new javax.swing.JTextField();
-        textFieldPasswordUsuarioRegistro = new javax.swing.JTextField();
         textFieldEdadUsuarioRegistro = new javax.swing.JTextField();
         comboBoxRegionesRegistro = new javax.swing.JComboBox<>();
         labelSuperiorRegistro = new javax.swing.JLabel();
@@ -58,11 +57,11 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         btnReset1 = new javax.swing.JButton();
         btnEnviarRegistro = new javax.swing.JButton();
         btnVolverRegistro = new javax.swing.JButton();
+        textFieldPasswordUsuarioRegistro = new javax.swing.JPasswordField();
         panelVacio2Registro = new javax.swing.JPanel();
         logIn = new javax.swing.JFrame();
         panelVacio1Login = new javax.swing.JPanel();
         panelCentralLogin = new javax.swing.JPanel();
-        textFieldPasswordUsuarioLogIn = new javax.swing.JTextField();
         labelSuperiorRegistro1 = new javax.swing.JLabel();
         labelNombreLogIn = new javax.swing.JLabel();
         labelPWDLogIn = new javax.swing.JLabel();
@@ -70,6 +69,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         btnResetLogIn = new javax.swing.JButton();
         btnEnviarLogIn = new javax.swing.JButton();
         btnVolverLogIn = new javax.swing.JButton();
+        textFieldPasswordUsuarioLogIn = new javax.swing.JPasswordField();
         panelVacio2Login = new javax.swing.JPanel();
         dialogLogInFallido = new javax.swing.JDialog();
         panelIconoAviso = new javax.swing.JPanel();
@@ -125,11 +125,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         textFieldNombreUsuarioRegistro.setToolTipText("Nombre");
         textFieldNombreUsuarioRegistro.setMinimumSize(new java.awt.Dimension(50, 100));
         textFieldNombreUsuarioRegistro.setPreferredSize(new java.awt.Dimension(50, 100));
-
-        textFieldPasswordUsuarioRegistro.setToolTipText("Contraseña");
-        textFieldPasswordUsuarioRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        textFieldPasswordUsuarioRegistro.setMinimumSize(new java.awt.Dimension(50, 100));
-        textFieldPasswordUsuarioRegistro.setPreferredSize(new java.awt.Dimension(50, 100));
 
         textFieldEdadUsuarioRegistro.setToolTipText("Contraseña");
         textFieldEdadUsuarioRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -188,7 +183,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             panelCentralRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(textFieldNombreUsuarioRegistro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(textFieldPasswordUsuarioRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(textFieldEdadUsuarioRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(comboBoxRegionesRegistro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -204,6 +198,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addComponent(btnVolverRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(textFieldPasswordUsuarioRegistro)
         );
         panelCentralRegistroLayout.setVerticalGroup(
             panelCentralRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,15 +257,10 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         );
         panelVacio1LoginLayout.setVerticalGroup(
             panelVacio1LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGap(0, 1108, Short.MAX_VALUE)
         );
 
         logIn.getContentPane().add(panelVacio1Login);
-
-        textFieldPasswordUsuarioLogIn.setToolTipText("Contraseña");
-        textFieldPasswordUsuarioLogIn.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        textFieldPasswordUsuarioLogIn.setMinimumSize(new java.awt.Dimension(50, 100));
-        textFieldPasswordUsuarioLogIn.setPreferredSize(new java.awt.Dimension(50, 100));
 
         labelSuperiorRegistro1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         labelSuperiorRegistro1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -318,7 +308,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             panelCentralLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(textFieldNombreUsuarioLogIn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(labelPWDLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(textFieldPasswordUsuarioLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(labelNombreLogIn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(labelSuperiorRegistro1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelCentralLoginLayout.createSequentialGroup()
@@ -331,7 +320,8 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                     .addGroup(panelCentralLoginLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnVolverLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
+            .addComponent(textFieldPasswordUsuarioLogIn)
         );
         panelCentralLoginLayout.setVerticalGroup(
             panelCentralLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,11 +336,11 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addComponent(labelPWDLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(textFieldPasswordUsuarioLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addComponent(btnEnviarLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnResetLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 309, Short.MAX_VALUE)
+                .addGap(309, 309, 309)
                 .addComponent(btnVolverLogIn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -365,7 +355,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         );
         panelVacio2LoginLayout.setVerticalGroup(
             panelVacio2LoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGap(0, 1108, Short.MAX_VALUE)
         );
 
         logIn.getContentPane().add(panelVacio2Login);
@@ -960,8 +950,8 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTextField textFieldEdadUsuarioRegistro;
     private javax.swing.JTextField textFieldNombreUsuarioLogIn;
     private javax.swing.JTextField textFieldNombreUsuarioRegistro;
-    private javax.swing.JTextField textFieldPasswordUsuarioLogIn;
-    private javax.swing.JTextField textFieldPasswordUsuarioRegistro;
+    private javax.swing.JPasswordField textFieldPasswordUsuarioLogIn;
+    private javax.swing.JPasswordField textFieldPasswordUsuarioRegistro;
     // End of variables declaration//GEN-END:variables
 
     @Override
