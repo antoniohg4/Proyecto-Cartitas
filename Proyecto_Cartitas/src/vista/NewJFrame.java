@@ -452,16 +452,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             .addGap(0, 115, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout panelCartasLayout = new javax.swing.GroupLayout(panelCartas);
-        panelCartas.setLayout(panelCartasLayout);
-        panelCartasLayout.setHorizontalGroup(
-            panelCartasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        panelCartasLayout.setVerticalGroup(
-            panelCartasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 827, Short.MAX_VALUE)
-        );
+        panelCartas.setLayout(new java.awt.GridLayout(10, 2));
 
         javax.swing.GroupLayout panelColeccionLayout = new javax.swing.GroupLayout(panelColeccion);
         panelColeccion.setLayout(panelColeccionLayout);
