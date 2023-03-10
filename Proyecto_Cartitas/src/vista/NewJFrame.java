@@ -80,9 +80,9 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         panelVacio = new javax.swing.JPanel();
         panelCentral = new javax.swing.JPanel();
         panelColeccion = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         labelColeccion = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        panelSuperiorVacio = new javax.swing.JPanel();
+        panelCartas = new javax.swing.JPanel();
         panelVacio2 = new javax.swing.JPanel();
         btnComprar = new javax.swing.JButton();
         labelTienda1 = new javax.swing.JLabel();
@@ -370,7 +370,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         logIn.getContentPane().add(panelVacio2Login);
 
-        dialogLogInFallido.setPreferredSize(new java.awt.Dimension(640, 360));
         dialogLogInFallido.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 dialogLogInFallidoWindowClosed(evt);
@@ -448,44 +447,50 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         menuPrincipal.getContentPane().add(panelVacio);
 
-        jLabel1.setText("AQUI VA EL BUCLE QUE METE LAS CARTAS");
-
         labelColeccion.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         labelColeccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelColeccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Coleccion_label.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelSuperiorVacioLayout = new javax.swing.GroupLayout(panelSuperiorVacio);
+        panelSuperiorVacio.setLayout(panelSuperiorVacioLayout);
+        panelSuperiorVacioLayout.setHorizontalGroup(
+            panelSuperiorVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelSuperiorVacioLayout.setVerticalGroup(
+            panelSuperiorVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 115, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout panelCartasLayout = new javax.swing.GroupLayout(panelCartas);
+        panelCartas.setLayout(panelCartasLayout);
+        panelCartasLayout.setHorizontalGroup(
+            panelCartasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelCartasLayout.setVerticalGroup(
+            panelCartasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 827, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout panelColeccionLayout = new javax.swing.GroupLayout(panelColeccion);
         panelColeccion.setLayout(panelColeccionLayout);
         panelColeccionLayout.setHorizontalGroup(
             panelColeccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panelColeccionLayout.createSequentialGroup()
-                .addGap(201, 201, 201)
-                .addComponent(jLabel1)
-                .addContainerGap(213, Short.MAX_VALUE))
-            .addComponent(labelColeccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelSuperiorVacio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelColeccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+            .addComponent(panelCartas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelColeccionLayout.setVerticalGroup(
             panelColeccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelColeccionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelSuperiorVacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelColeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81)
-                .addComponent(jLabel1)
-                .addContainerGap(754, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(panelCartas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout panelCentralLayout = new javax.swing.GroupLayout(panelCentral);
@@ -910,7 +915,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JComboBox<String> comboBoxRegionesRegistro;
     private javax.swing.JDialog dialogLogInFallido;
     private javax.swing.JDialog dialogSobre;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -920,7 +924,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelColeccion;
     private javax.swing.JLabel labelIconoMoneda;
     private javax.swing.JLabel labelMPT;
@@ -934,6 +937,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JFrame logIn;
     private javax.swing.JFrame menuPrincipal;
+    private javax.swing.JPanel panelCartas;
     private javax.swing.JPanel panelCentral;
     private javax.swing.JPanel panelCentral1;
     private javax.swing.JPanel panelCentralLogin;
@@ -942,6 +946,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JPanel panelIconoAviso;
     private javax.swing.JPanel panelIconoMoneda;
     private javax.swing.JPanel panelMonedas;
+    private javax.swing.JPanel panelSuperiorVacio;
     private javax.swing.JPanel panelTitulo;
     private javax.swing.JPanel panelVacio;
     private javax.swing.JPanel panelVacio1;
