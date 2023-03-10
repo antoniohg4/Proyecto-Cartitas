@@ -300,6 +300,7 @@ public class gestion_BD {
     public static boolean comprar(String nombreUsuario){
         
         boolean hecho = false;
+        System.out.println("ENTRA EN COMPRAR");
         try {
             PreparedStatement st = con.prepareStatement("UPDATE mpt_db.usuario SET Monedas = Monedas - 100 WHERE Nombre = ?;");
             st.setString(1, nombreUsuario);
