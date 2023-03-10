@@ -71,31 +71,40 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         btnVolverLogIn = new javax.swing.JButton();
         textFieldPasswordUsuarioLogIn = new javax.swing.JPasswordField();
         panelVacio2Login = new javax.swing.JPanel();
-        dialogLogInFallido = new javax.swing.JDialog();
-        panelIconoAviso = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        labelMensaje = new javax.swing.JLabel();
-        btnAceptarDialog = new javax.swing.JButton();
         menuPrincipal = new javax.swing.JFrame();
-        panelVacio = new javax.swing.JPanel();
+        panelIzquierda = new javax.swing.JPanel();
+        btnPelea = new javax.swing.JButton();
+        labelBatalla = new javax.swing.JLabel();
         panelCentral = new javax.swing.JPanel();
         panelColeccion = new javax.swing.JPanel();
         labelColeccion = new javax.swing.JLabel();
         panelSuperiorVacio = new javax.swing.JPanel();
         panelCartas = new javax.swing.JPanel();
-        panelVacio2 = new javax.swing.JPanel();
+        panelDerecha = new javax.swing.JPanel();
         btnComprar = new javax.swing.JButton();
         labelTienda1 = new javax.swing.JLabel();
         panelMonedas = new javax.swing.JPanel();
         panelIconoMoneda = new javax.swing.JPanel();
         labelIconoMoneda = new javax.swing.JLabel();
         labelNumeroMonedas = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        dialogLogInFallido = new javax.swing.JDialog();
+        panelIconoAviso = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        labelMensaje = new javax.swing.JLabel();
+        btnAceptarDialog = new javax.swing.JButton();
         cartaAmpliada = new javax.swing.JDialog();
         dialogSobre = new javax.swing.JDialog();
         jLabel3 = new javax.swing.JLabel();
+        dialogWIP = new javax.swing.JDialog();
+        panelIconoAviso1 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        labelWIP = new javax.swing.JLabel();
+        btnAceptarDialogWIP = new javax.swing.JButton();
+        dialogMercaderes = new javax.swing.JDialog();
+        panelIconoAviso2 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        labelMercaderes = new javax.swing.JLabel();
+        btnAceptarDialogMercaderes = new javax.swing.JButton();
         panelVacio1 = new javax.swing.JPanel();
         panelCentral1 = new javax.swing.JPanel();
         panelTitulo = new javax.swing.JPanel();
@@ -104,9 +113,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         btnRegistro = new javax.swing.JButton();
         labelTitulo = new javax.swing.JLabel();
         panelVacio3 = new javax.swing.JPanel();
-
-        cartasItems = new javax.swing.JButton[BTN_LONG[0]][BTN_LONG[1]];
-        imagenesCartas = new ArrayList<>();
 
         registroUsuario.setMinimumSize(new java.awt.Dimension(1920, 1080));
         registroUsuario.setResizable(false);
@@ -363,82 +369,43 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
         logIn.getContentPane().add(panelVacio2Login);
 
-        dialogLogInFallido.addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                dialogLogInFallidoWindowClosed(evt);
-            }
-        });
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Warning.png"))); // NOI18N
-
-        javax.swing.GroupLayout panelIconoAvisoLayout = new javax.swing.GroupLayout(panelIconoAviso);
-        panelIconoAviso.setLayout(panelIconoAvisoLayout);
-        panelIconoAvisoLayout.setHorizontalGroup(
-            panelIconoAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-            .addGroup(panelIconoAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-        );
-        panelIconoAvisoLayout.setVerticalGroup(
-            panelIconoAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(panelIconoAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-        );
-
-        labelMensaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/ErrorLogin_label.png"))); // NOI18N
-
-        btnAceptarDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Volver_Button_2_190x64.png"))); // NOI18N
-        btnAceptarDialog.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarDialogActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout dialogLogInFallidoLayout = new javax.swing.GroupLayout(dialogLogInFallido.getContentPane());
-        dialogLogInFallido.getContentPane().setLayout(dialogLogInFallidoLayout);
-        dialogLogInFallidoLayout.setHorizontalGroup(
-            dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
-                .addGroup(dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(panelIconoAviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
-                        .addGap(246, 246, 246)
-                        .addComponent(btnAceptarDialog)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        dialogLogInFallidoLayout.setVerticalGroup(
-            dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addGroup(dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelIconoAviso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                .addComponent(btnAceptarDialog)
-                .addGap(32, 32, 32))
-        );
-
         menuPrincipal.setMinimumSize(new java.awt.Dimension(1920, 1080));
         menuPrincipal.setPreferredSize(new java.awt.Dimension(1920, 1080));
         menuPrincipal.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        javax.swing.GroupLayout panelVacioLayout = new javax.swing.GroupLayout(panelVacio);
-        panelVacio.setLayout(panelVacioLayout);
-        panelVacioLayout.setHorizontalGroup(
-            panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
+        btnPelea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Pelea_button.jpg"))); // NOI18N
+        btnPelea.setPreferredSize(new java.awt.Dimension(72, 24));
+        btnPelea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPeleaActionPerformed(evt);
+            }
+        });
+
+        labelBatalla.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        labelBatalla.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelBatalla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Batalla_label.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelIzquierdaLayout = new javax.swing.GroupLayout(panelIzquierda);
+        panelIzquierda.setLayout(panelIzquierdaLayout);
+        panelIzquierdaLayout.setHorizontalGroup(
+            panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelBatalla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPelea, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130))
         );
-        panelVacioLayout.setVerticalGroup(
-            panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+        panelIzquierdaLayout.setVerticalGroup(
+            panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIzquierdaLayout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addComponent(labelBatalla, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 462, Short.MAX_VALUE)
+                .addComponent(btnPelea, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(309, 309, 309))
         );
 
-        menuPrincipal.getContentPane().add(panelVacio);
+        menuPrincipal.getContentPane().add(panelIzquierda);
 
         labelColeccion.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         labelColeccion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -472,8 +439,8 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addComponent(panelSuperiorVacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelColeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panelCartas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelCartas, javax.swing.GroupLayout.DEFAULT_SIZE, 839, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -547,61 +514,97 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Compra cuanto quieras, esta versión no");
-        jLabel4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel9.setText("contempla el balance de monedas");
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel10.setText("negativo.");
-
-        javax.swing.GroupLayout panelVacio2Layout = new javax.swing.GroupLayout(panelVacio2);
-        panelVacio2.setLayout(panelVacio2Layout);
-        panelVacio2Layout.setHorizontalGroup(
-            panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelVacio2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelDerechaLayout = new javax.swing.GroupLayout(panelDerecha);
+        panelDerecha.setLayout(panelDerechaLayout);
+        panelDerechaLayout.setHorizontalGroup(
+            panelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDerechaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelVacio2Layout.createSequentialGroup()
-                        .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panelMonedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelTienda1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
-                                .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(122, 122, 122))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
-                                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(110, 110, 110))))))
+                .addGroup(panelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelMonedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelTienda1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDerechaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(136, 136, 136))
         );
-        panelVacio2Layout.setVerticalGroup(
-            panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelVacio2Layout.createSequentialGroup()
+        panelDerechaLayout.setVerticalGroup(
+            panelDerechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDerechaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelTienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 460, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 461, Short.MAX_VALUE)
                 .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addGap(158, 158, 158))
+                .addGap(310, 310, 310))
         );
 
-        menuPrincipal.getContentPane().add(panelVacio2);
+        menuPrincipal.getContentPane().add(panelDerecha);
+
+        dialogLogInFallido.setPreferredSize(new java.awt.Dimension(640, 360));
+        dialogLogInFallido.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                dialogLogInFallidoWindowClosed(evt);
+            }
+        });
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Warning.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelIconoAvisoLayout = new javax.swing.GroupLayout(panelIconoAviso);
+        panelIconoAviso.setLayout(panelIconoAvisoLayout);
+        panelIconoAvisoLayout.setHorizontalGroup(
+            panelIconoAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelIconoAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+        );
+        panelIconoAvisoLayout.setVerticalGroup(
+            panelIconoAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelIconoAvisoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+        );
+
+        labelMensaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/ErrorLogin_label.png"))); // NOI18N
+
+        btnAceptarDialog.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Volver_Button_2_190x64.png"))); // NOI18N
+        btnAceptarDialog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarDialogActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogLogInFallidoLayout = new javax.swing.GroupLayout(dialogLogInFallido.getContentPane());
+        dialogLogInFallido.getContentPane().setLayout(dialogLogInFallidoLayout);
+        dialogLogInFallidoLayout.setHorizontalGroup(
+            dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
+                .addGroup(dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(panelIconoAviso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
+                        .addGap(246, 246, 246)
+                        .addComponent(btnAceptarDialog)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dialogLogInFallidoLayout.setVerticalGroup(
+            dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogLogInFallidoLayout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addGroup(dialogLogInFallidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelIconoAviso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addComponent(btnAceptarDialog)
+                .addGap(32, 32, 32))
+        );
+
+        cartaAmpliada.setPreferredSize(new java.awt.Dimension(640, 360));
 
         javax.swing.GroupLayout cartaAmpliadaLayout = new javax.swing.GroupLayout(cartaAmpliada.getContentPane());
         cartaAmpliada.getContentPane().setLayout(cartaAmpliadaLayout);
@@ -613,6 +616,8 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             cartaAmpliadaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
+
+        dialogSobre.setPreferredSize(new java.awt.Dimension(640, 360));
 
         jLabel3.setText("jLabel3");
 
@@ -631,6 +636,128 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
                 .addGap(123, 123, 123)
                 .addComponent(jLabel3)
                 .addContainerGap(161, Short.MAX_VALUE))
+        );
+
+        dialogWIP.setPreferredSize(new java.awt.Dimension(640, 360));
+        dialogWIP.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                dialogWIPWindowClosed(evt);
+            }
+        });
+
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Warning.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelIconoAviso1Layout = new javax.swing.GroupLayout(panelIconoAviso1);
+        panelIconoAviso1.setLayout(panelIconoAviso1Layout);
+        panelIconoAviso1Layout.setHorizontalGroup(
+            panelIconoAviso1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelIconoAviso1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+        );
+        panelIconoAviso1Layout.setVerticalGroup(
+            panelIconoAviso1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelIconoAviso1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+        );
+
+        labelWIP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/WIP_label.png"))); // NOI18N
+
+        btnAceptarDialogWIP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Volver_Button_2_190x64.png"))); // NOI18N
+        btnAceptarDialogWIP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarDialogWIPActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogWIPLayout = new javax.swing.GroupLayout(dialogWIP.getContentPane());
+        dialogWIP.getContentPane().setLayout(dialogWIPLayout);
+        dialogWIPLayout.setHorizontalGroup(
+            dialogWIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogWIPLayout.createSequentialGroup()
+                .addGroup(dialogWIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogWIPLayout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(panelIconoAviso1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelWIP, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogWIPLayout.createSequentialGroup()
+                        .addGap(246, 246, 246)
+                        .addComponent(btnAceptarDialogWIP)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dialogWIPLayout.setVerticalGroup(
+            dialogWIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogWIPLayout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addGroup(dialogWIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelIconoAviso1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelWIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addComponent(btnAceptarDialogWIP)
+                .addGap(32, 32, 32))
+        );
+
+        dialogMercaderes.setPreferredSize(new java.awt.Dimension(640, 360));
+        dialogMercaderes.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                dialogMercaderesWindowClosed(evt);
+            }
+        });
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Warning.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelIconoAviso2Layout = new javax.swing.GroupLayout(panelIconoAviso2);
+        panelIconoAviso2.setLayout(panelIconoAviso2Layout);
+        panelIconoAviso2Layout.setHorizontalGroup(
+            panelIconoAviso2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(panelIconoAviso2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+        );
+        panelIconoAviso2Layout.setVerticalGroup(
+            panelIconoAviso2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelIconoAviso2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+        );
+
+        labelMercaderes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/labels/Mercaderes_label.png"))); // NOI18N
+
+        btnAceptarDialogMercaderes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/botones/Volver_Button_2_190x64.png"))); // NOI18N
+        btnAceptarDialogMercaderes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarDialogMercaderesActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogMercaderesLayout = new javax.swing.GroupLayout(dialogMercaderes.getContentPane());
+        dialogMercaderes.getContentPane().setLayout(dialogMercaderesLayout);
+        dialogMercaderesLayout.setHorizontalGroup(
+            dialogMercaderesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogMercaderesLayout.createSequentialGroup()
+                .addGroup(dialogMercaderesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogMercaderesLayout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(panelIconoAviso2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelMercaderes, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogMercaderesLayout.createSequentialGroup()
+                        .addGap(246, 246, 246)
+                        .addComponent(btnAceptarDialogMercaderes)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dialogMercaderesLayout.setVerticalGroup(
+            dialogMercaderesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogMercaderesLayout.createSequentialGroup()
+                .addGap(124, 124, 124)
+                .addGroup(dialogMercaderesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelIconoAviso2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelMercaderes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addComponent(btnAceptarDialogMercaderes)
+                .addGap(32, 32, 32))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -735,8 +862,6 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
             .addGap(0, 1080, Short.MAX_VALUE)
         );
 
-        crearEspacioDeCartas();
-
         getContentPane().add(panelVacio3);
 
         pack();
@@ -818,12 +943,16 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     }//GEN-LAST:event_dialogLogInFallidoWindowClosed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-        ArrayList<Carta> listaCartasSobre = Juego.abrirSobre(); //lista que se va a mostrar en el dialog
-        
-        boolean comprado = gestion_BD.comprar(nombreJugador); 
-        
-        if (comprado) { //Si el update se ha hecho correctamente
-            this.labelNumeroMonedas.setText(String.valueOf(Integer.parseInt(this.labelNumeroMonedas.getText()) - 100)); //Actualiza el label de las monedas
+        if (Integer.parseInt(this.labelNumeroMonedas.getText()) <= 0) { //Mira si no hay liquidez
+            this.dialogMercaderes.setVisible(true);
+        }else{
+            ArrayList<Carta> listaCartasSobre = Juego.abrirSobre(); //lista que se va a mostrar en el dialog
+
+            boolean comprado = gestion_BD.comprar(nombreJugador); 
+
+            if (comprado) { //Si el update se ha hecho correctamente
+                this.labelNumeroMonedas.setText(String.valueOf(Integer.parseInt(this.labelNumeroMonedas.getText()) - 100)); //Actualiza el label de las monedas
+            }
         }
     }//GEN-LAST:event_btnComprarActionPerformed
 
@@ -833,6 +962,28 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
         this.textFieldEdadUsuarioRegistro.setText("");
         this.comboBoxRegionesRegistro.setSelectedItem("EUW");
     }//GEN-LAST:event_btnReset1ActionPerformed
+
+    private void btnAceptarDialogWIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarDialogWIPActionPerformed
+        this.dialogWIP.setVisible(false);
+        this.menuPrincipal.setFocusable(true);
+    }//GEN-LAST:event_btnAceptarDialogWIPActionPerformed
+
+    private void dialogWIPWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dialogWIPWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dialogWIPWindowClosed
+
+    private void btnAceptarDialogMercaderesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarDialogMercaderesActionPerformed
+        this.dialogMercaderes.setVisible(false);
+    }//GEN-LAST:event_btnAceptarDialogMercaderesActionPerformed
+
+    private void dialogMercaderesWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_dialogMercaderesWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dialogMercaderesWindowClosed
+
+    private void btnPeleaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPeleaActionPerformed
+        this.dialogWIP.setVisible(true);
+        this.menuPrincipal.setFocusable(false);
+    }//GEN-LAST:event_btnPeleaActionPerformed
 
     public void mostrarDialogoLogInFallido(){
         this.dialogLogInFallido.setVisible(true);
@@ -893,10 +1044,13 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptarDialog;
+    private javax.swing.JButton btnAceptarDialogMercaderes;
+    private javax.swing.JButton btnAceptarDialogWIP;
     private javax.swing.JButton btnComprar;
     private javax.swing.JButton btnEnviarLogIn;
     private javax.swing.JButton btnEnviarRegistro;
     private javax.swing.JButton btnIniciarSesion;
+    private javax.swing.JButton btnPelea;
     private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnReset1;
     private javax.swing.JButton btnResetLogIn;
@@ -905,20 +1059,23 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JDialog cartaAmpliada;
     private javax.swing.JComboBox<String> comboBoxRegionesRegistro;
     private javax.swing.JDialog dialogLogInFallido;
+    private javax.swing.JDialog dialogMercaderes;
     private javax.swing.JDialog dialogSobre;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JDialog dialogWIP;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel labelBatalla;
     private javax.swing.JLabel labelColeccion;
     private javax.swing.JLabel labelIconoMoneda;
     private javax.swing.JLabel labelMPT;
     private javax.swing.JLabel labelMensaje;
+    private javax.swing.JLabel labelMercaderes;
     private javax.swing.JLabel labelNombreLogIn;
     private javax.swing.JLabel labelNumeroMonedas;
     private javax.swing.JLabel labelPWDLogIn;
@@ -926,6 +1083,7 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel labelSuperiorRegistro1;
     private javax.swing.JLabel labelTienda1;
     private javax.swing.JLabel labelTitulo;
+    private javax.swing.JLabel labelWIP;
     private javax.swing.JFrame logIn;
     private javax.swing.JFrame menuPrincipal;
     private javax.swing.JPanel panelCartas;
@@ -934,16 +1092,18 @@ public class NewJFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JPanel panelCentralLogin;
     private javax.swing.JPanel panelCentralRegistro;
     private javax.swing.JPanel panelColeccion;
+    private javax.swing.JPanel panelDerecha;
     private javax.swing.JPanel panelIconoAviso;
+    private javax.swing.JPanel panelIconoAviso1;
+    private javax.swing.JPanel panelIconoAviso2;
     private javax.swing.JPanel panelIconoMoneda;
+    private javax.swing.JPanel panelIzquierda;
     private javax.swing.JPanel panelMonedas;
     private javax.swing.JPanel panelSuperiorVacio;
     private javax.swing.JPanel panelTitulo;
-    private javax.swing.JPanel panelVacio;
     private javax.swing.JPanel panelVacio1;
     private javax.swing.JPanel panelVacio1Login;
     private javax.swing.JPanel panelVacio1Registro;
-    private javax.swing.JPanel panelVacio2;
     private javax.swing.JPanel panelVacio2Login;
     private javax.swing.JPanel panelVacio2Registro;
     private javax.swing.JPanel panelVacio3;
