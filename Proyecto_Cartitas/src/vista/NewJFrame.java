@@ -30,16 +30,19 @@ import modelo.EnumRegiones;
  *
  * @author Antonio
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class NewJFrame extends javax.swing.JFrame implements Runnable{
     private ArrayList <JButton> cartasItems;
     private String nombreJugador;
     private static final int BTN_LONG=20;
     ActionListener miActionListener;
+    private Thread hilo = null;
     /**
      * Creates new form NewJFrame
      */
     public NewJFrame() {
         initComponents();
+        hilo = new Thread(this);
+        hilo.start();
     }
 
     /**
@@ -127,6 +130,14 @@ public class NewJFrame extends javax.swing.JFrame {
 
         registroUsuario.setMinimumSize(new java.awt.Dimension(1920, 1080));
         registroUsuario.setResizable(false);
+        registroUsuario.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                registroUsuarioWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                registroUsuarioWindowClosing(evt);
+            }
+        });
         registroUsuario.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout panelVacio1RegistroLayout = new javax.swing.GroupLayout(panelVacio1Registro);
@@ -267,6 +278,14 @@ public class NewJFrame extends javax.swing.JFrame {
 
         logIn.setMinimumSize(new java.awt.Dimension(1920, 1080));
         logIn.setResizable(false);
+        logIn.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                logInWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                logInWindowClosing(evt);
+            }
+        });
         logIn.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout panelVacio1LoginLayout = new javax.swing.GroupLayout(panelVacio1Login);
@@ -557,19 +576,16 @@ public class NewJFrame extends javax.swing.JFrame {
                         .addComponent(panelMonedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 106, Short.MAX_VALUE)
                         .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
-                                .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
-                                .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(labelTienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))))
+                            .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(labelTienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 106, Short.MAX_VALUE))))
         );
         panelVacio2Layout.setVerticalGroup(
             panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1061,6 +1077,26 @@ public class NewJFrame extends javax.swing.JFrame {
         this.setVisible(true);
     }//GEN-LAST:event_menuPrincipalWindowClosing
 
+    private void logInWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_logInWindowClosed
+        this.logIn.setVisible(false);
+        this.setVisible(true);
+    }//GEN-LAST:event_logInWindowClosed
+
+    private void registroUsuarioWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_registroUsuarioWindowClosed
+       this.registroUsuario.setVisible(false);
+       this.setVisible(true);
+    }//GEN-LAST:event_registroUsuarioWindowClosed
+
+    private void registroUsuarioWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_registroUsuarioWindowClosing
+        this.registroUsuario.setVisible(false);
+        this.setVisible(true);
+    }//GEN-LAST:event_registroUsuarioWindowClosing
+
+    private void logInWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_logInWindowClosing
+        this.logIn.setVisible(false);
+        this.setVisible(true);
+    }//GEN-LAST:event_logInWindowClosing
+
     public void mostrarDialogoLogInFallido(){
         this.dialogLogInFallido.setVisible(true);
         this.setFocusable(false);
@@ -1242,6 +1278,30 @@ public class NewJFrame extends javax.swing.JFrame {
                     }
                 });
             }
+        }
+    }
+
+    @Override
+    public void run() {
+        try {
+            File file = new File("src/resources/vid/cartitas.wav");
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            FloatControl controlVolumen = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            controlVolumen.setValue(-10.0f); // Reduce el volumen en X decibelios.
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            
+            
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
