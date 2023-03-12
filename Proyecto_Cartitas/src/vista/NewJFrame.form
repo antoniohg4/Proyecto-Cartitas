@@ -476,7 +476,7 @@
                           <Component id="labelBatalla" min="-2" pref="90" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="392" max="-2" attributes="0"/>
                           <Component id="btnPelea" min="-2" pref="80" max="-2" attributes="0"/>
-                          <EmptySpace pref="392" max="32767" attributes="0"/>
+                          <EmptySpace pref="425" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -529,7 +529,6 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="panelSuperiorVacio" alignment="0" max="32767" attributes="0"/>
-                          <Component id="labelColeccion" alignment="1" max="32767" attributes="0"/>
                           <Component id="panelCartas" alignment="0" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
@@ -538,41 +537,49 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="panelSuperiorVacio" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="labelColeccion" min="-2" pref="90" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
                               <Component id="panelCartas" min="-2" pref="825" max="-2" attributes="0"/>
-                              <EmptySpace pref="26" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="labelColeccion">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Segoe UI" size="48" style="0"/>
-                        </Property>
-                        <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/resources/img/labels/Coleccion_label.png"/>
-                        </Property>
-                      </Properties>
-                    </Component>
                     <Container class="javax.swing.JPanel" name="panelSuperiorVacio">
 
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelColeccion" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <EmptySpace min="0" pref="115" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace pref="72" max="32767" attributes="0"/>
+                                  <Component id="labelColeccion" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
+                      <SubComponents>
+                        <Component class="javax.swing.JLabel" name="labelColeccion">
+                          <Properties>
+                            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                              <Font name="Segoe UI" size="48" style="0"/>
+                            </Property>
+                            <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/resources/img/labels/Coleccion_label.png"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="panelCartas">
 
@@ -628,7 +635,7 @@
                           <Component id="panelMonedas" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="labelTienda1" min="-2" pref="90" max="-2" attributes="0"/>
-                          <EmptySpace pref="460" max="32767" attributes="0"/>
+                          <EmptySpace pref="493" max="32767" attributes="0"/>
                           <Component id="btnComprar" min="-2" pref="80" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>

@@ -88,8 +88,8 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
         btnPelea = new javax.swing.JButton();
         panelCentral = new javax.swing.JPanel();
         panelColeccion = new javax.swing.JPanel();
-        labelColeccion = new javax.swing.JLabel();
         panelSuperiorVacio = new javax.swing.JPanel();
+        labelColeccion = new javax.swing.JLabel();
         panelCartas = new javax.swing.JPanel();
         panelVacio2 = new javax.swing.JPanel();
         btnComprar = new javax.swing.JButton();
@@ -424,7 +424,7 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
                 .addComponent(labelBatalla, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(392, 392, 392)
                 .addComponent(btnPelea, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(392, Short.MAX_VALUE))
+                .addContainerGap(425, Short.MAX_VALUE))
         );
 
         panelVacio4.add(panelVacio);
@@ -437,11 +437,17 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
         panelSuperiorVacio.setLayout(panelSuperiorVacioLayout);
         panelSuperiorVacioLayout.setHorizontalGroup(
             panelSuperiorVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSuperiorVacioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelColeccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelSuperiorVacioLayout.setVerticalGroup(
             panelSuperiorVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 115, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSuperiorVacioLayout.createSequentialGroup()
+                .addContainerGap(72, Short.MAX_VALUE)
+                .addComponent(labelColeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         panelCartas.setLayout(new java.awt.GridLayout(5, 4));
@@ -451,7 +457,6 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
         panelColeccionLayout.setHorizontalGroup(
             panelColeccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelSuperiorVacio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelColeccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panelCartas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelColeccionLayout.setVerticalGroup(
@@ -459,11 +464,9 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
             .addGroup(panelColeccionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelSuperiorVacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelColeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(108, 108, 108)
                 .addComponent(panelCartas, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelCentralLayout = new javax.swing.GroupLayout(panelCentral);
@@ -579,7 +582,7 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
                 .addComponent(panelMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(labelTienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 460, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 493, Short.MAX_VALUE)
                 .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(jLabel4)
