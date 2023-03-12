@@ -172,6 +172,114 @@ public class gestion_BD {
     }//insertsCartas
 
     
+    public static void insertsUsuarios(){
+        Statement st;
+        String sql;
+        try {
+            
+            sql="SELECT idCarta FROM cartas;";
+
+            st=con.createStatement();
+            sql="INSERT INTO `usuario` (`IdUsuario`, `Nombre`, `Pwd`, `Edad`, `Monedas`, `Region`) VALUES\n" +
+                "(1, '123', '123', 123, 969500, 'EUW'),\n" +
+                "(2, 'DAshen', 'a', 15, 500, 'EUW'),\n" +
+                "(3, 'Alvaricow', 'Chupamela', 26, -1, 'EUW'),\n" +
+                "(6, 'Faker', 'pass', 25, 8000, 'KOR'),\n" +
+                "(7, 'AntonioHG_4', 'GoticasCulonasFTW', 14, 700, 'EUW'),\n" +
+                "(8, 'RafaelBETI', '23-04-2022CopaDelRey', 41, 1000000, 'EUW'),\n" +
+                "(9, 'Dmitry', 'Vodka', 47, 1000, 'EUNE'),\n" +
+                "(10, 'WillElTortasSmith', 'ChrisRockSlayer', 54, 4500, 'NA'),\n" +
+                "(11, 'GuillermoDelToro', 'terrorenyoyer', 58, 560000, 'LATAM'),\n" +
+                "(12, 'BrandonSanderson', 'LeanElArchivoNoMassss', 47, 16000, 'NA'),\n" +
+                "(13, 'XiJinping', 'shina', 69, 400, 'CHI'),\n" +
+                "(14, 'Eiichirō Oda', 'una_Pieza', 48, 1, 'JAP'),\n" +
+                "(15, 'PrincipeNigeriano', 'siMeDas500BitCoinsTeHagoRico', 30, 10000, 'AFR'),\n" +
+                "(16, 'HughLoganJackman', 'AgujaDinamica', 54, 70000, 'OCE');";
+            st.addBatch(sql);
+
+            int [] numUpdates=st.executeBatch();
+            for (int i = 0; i < numUpdates.length; i++) {
+                    if (numUpdates[i] == Statement.EXECUTE_FAILED) {
+                            System.out.println("Execution " + i + ": FAILED");
+                    } else {
+                            System.out.println("Execution " + i + "successful: " + numUpdates[i] + " rows updated");
+                    }
+            }
+            
+            con.commit();
+            //cerramos el statement este.
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                con.rollback();
+                System.out.println("Rollback realizado");
+            }catch(SQLException re) {
+                re.printStackTrace();
+                System.out.println("Error realizando Rollback");
+            } 
+        }
+    }//insertsUsuarios
+    
+    
+    public static void insertsColeccion(){
+        Statement st;
+        String sql;
+        try {
+            
+            sql="SELECT idCarta FROM cartas;";
+
+            st=con.createStatement();
+            sql="INSERT INTO `coleccion` (`IdCarta`, `IdUsuario`, `NombreCarta`) VALUES\n" +
+                "(1, 1, 'Rey'),\n" +
+                "(4, 1, 'Payaso'),\n" +
+                "(8, 1, 'Herrero'),\n" +
+                "(17, 1, 'Pirata'),\n" +
+                "(7, 1, 'Granjero'),\n" +
+                "(15, 1, 'Alquimista'),\n" +
+                "(16, 1, 'Cazador'),\n" +
+                "(3, 1, 'Bufón'),\n" +
+                "(9, 1, 'Sacerdote'),\n" +
+                "(10, 1, 'Cultista'),\n" +
+                "(12, 1, 'Demonio'),\n" +
+                "(13, 1, 'Mago'),\n" +
+                "(5, 1, 'Caballero'),\n" +
+                "(2, 1, 'Reina'),\n" +
+                "(19, 1, 'Orco'),\n" +
+                "(11, 1, 'Ángel'),\n" +
+                "(6, 1, 'Verdugo'),\n" +
+                "(14, 1, 'Druida'),\n" +
+                "(18, 1, 'Elfo'),\n" +
+                "(20, 1, 'Viajero del Tiempo');";
+            st.addBatch(sql);
+
+            int [] numUpdates=st.executeBatch();
+            for (int i = 0; i < numUpdates.length; i++) {
+                    if (numUpdates[i] == Statement.EXECUTE_FAILED) {
+                            System.out.println("Execution " + i + ": FAILED");
+                    } else {
+                            System.out.println("Execution " + i + "successful: " + numUpdates[i] + " rows updated");
+                    }
+            }
+            
+            con.commit();
+            //cerramos el statement este.
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                con.rollback();
+                System.out.println("Rollback realizado");
+            }catch(SQLException re) {
+                re.printStackTrace();
+                System.out.println("Error realizando Rollback");
+            } 
+        }
+    }//insertsColeccion
+    
+    
+    
+    
     /**
      * Cierra la conexion a la BD
      */

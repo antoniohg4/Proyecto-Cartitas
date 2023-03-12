@@ -924,6 +924,7 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
             this.logIn.setFocusable(false);
         }else{
             this.menuPrincipal.setVisible(true);
+            this.menuPrincipal.setResizable(false);
             this.logIn.setVisible(false);
             nombreJugador = this.textFieldNombreUsuarioLogIn.getText(); //Si hace login, pilla el texto del textField (que es igual al nombre de la BD)
             
