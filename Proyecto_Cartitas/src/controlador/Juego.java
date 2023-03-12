@@ -58,6 +58,9 @@ public class Juego {
         return sobre;
     }
     
+    /*
+     * metodos que comprueban si salio una carta de dicha rareza
+     */
     
     public static boolean comprobarRareza2() {
         boolean resultado = false;
@@ -93,10 +96,5 @@ public class Juego {
             resultado = true;
         }
         return resultado;
-    }
-    
-
-    public static ArrayList<Carta> mostrarImgColeccion(){
-        return coleccion;
     }
 }

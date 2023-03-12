@@ -1,7 +1,6 @@
 
 import java.sql.*;
 import controlador.gestion_BD;
-import vista.NewJFrame;
 import vista.SplashScreen;
 
 /**

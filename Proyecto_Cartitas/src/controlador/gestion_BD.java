@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Carta;
-import modelo.EnumRegiones;
 
 /**
  *
@@ -298,8 +297,9 @@ public class gestion_BD {
         boolean hecho = false;
         System.out.println("ENTRA EN COMPRAR");//TODO QUITAR ESTE PRINT DE TESTEO
         try {
-            PreparedStatement st = con.prepareStatement("UPDATE mpt_db.usuario SET Monedas = Monedas - 100 WHERE Nombre = ?;");
-            st.setString(1, nombreUsuario);
+            PreparedStatement st = con.prepareStatement("UPDATE mpt_db.usuario SET Monedas = Monedas - (?) WHERE Nombre = (?);");
+            st.setInt(1, PRECIO_SOBRE);
+            st.setString(2, nombreUsuario);
 
             int rs = st.executeUpdate();
             
