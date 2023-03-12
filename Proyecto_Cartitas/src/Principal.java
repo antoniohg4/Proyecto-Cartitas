@@ -1,3 +1,4 @@
+
 import java.sql.*;
 import controlador.gestion_BD;
 import vista.NewJFrame;
@@ -14,6 +15,10 @@ public class Principal {
         gestion_BD.crearConexion(); //Crea la conexión con la BD
         gestion_BD.creacionBD(); //Crea la BD
         gestion_BD.insertsCartas();
+        
+        //HiloVideo hv = new HiloVideo();
+        
+        
         NewJFrame frame = new NewJFrame();
         
         frame.setVisible(true);

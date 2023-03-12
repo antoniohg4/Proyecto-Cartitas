@@ -2,6 +2,8 @@ package controlador;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Carta;
 import modelo.EnumRegiones;
 
@@ -169,8 +171,7 @@ public class gestion_BD {
             } 
         }
     }//insertsCartas
- 
-    
+
     
     /**
      * Cierra la conexion a la BD
@@ -330,4 +331,75 @@ public class gestion_BD {
         }
         return cantidadMonedas;
     }
+    
+    public static void anadirCartasAColeccion(ArrayList<Carta> listaCartasSobre, String nombreUsuario) {
+        for (int i = 0; i < listaCartasSobre.toArray().length; i++) {
+            if (!comprobarCarta(listaCartasSobre.get(i), nombreUsuario)) {
+                try {
+                    PreparedStatement pst = con.prepareStatement("INSERT INTO coleccion (IdCarta, IdUsuario, NombreCarta) VALUES (?, ?, ?)");
+
+                    pst.setInt(1, listaCartasSobre.get(i).getId()); //IdCarta
+                    pst.setInt(2, obtenerIdUsuario(nombreUsuario)); //IdUsuario
+                    pst.setString(3, listaCartasSobre.get(i).getNombre()); //NombreCarta
+
+                    if (pst.executeUpdate() == 1) {
+                        System.out.println("Update realizado. Carta añadida");  
+                    }else{
+                        System.out.println("Update no realizado. Carta no añadida"); 
+                    }
+                    con.commit();
+                } catch (SQLException ex) {
+                    Logger.getLogger(gestion_BD.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+    public static boolean comprobarCarta(Carta c, String nombreUsuario){
+        String sql = "SELECT idCarta FROM coleccion c JOIN usuario u using(idUsuario) where u.Nombre = ?";
+        boolean existeCarta = false;
+        try {
+            PreparedStatement pst = con.prepareStatement(sql);
+            
+            pst.setString(1, nombreUsuario);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                if (rs.getInt("IdCarta") == c.getId()) {
+                    existeCarta = true;
+                }
+            }
+               
+        } catch (SQLException ex) {
+            Logger.getLogger(gestion_BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return existeCarta;
+    }
+    
+    
+     private static int obtenerIdUsuario(String nombreUsuario) {
+        String sql = "SELECT IdUsuario FROM usuario where Nombre = ?";
+        int idUsuario = 0;
+        try {
+            PreparedStatement pst = con.prepareStatement(sql);
+            
+            pst.setString(1, nombreUsuario);
+            
+            ResultSet rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                idUsuario = rs.getInt("IdUsuario");
+            }
+               
+        } catch (SQLException ex) {
+            Logger.getLogger(gestion_BD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return idUsuario;
+        
+    }
+    
+    
 }

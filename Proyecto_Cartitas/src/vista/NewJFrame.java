@@ -10,8 +10,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.*;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -23,15 +30,18 @@ import modelo.EnumRegiones;
  *
  * @author Antonio
  */
-public class NewJFrame extends javax.swing.JFrame {
+public class NewJFrame extends javax.swing.JFrame implements Runnable{
     private ArrayList <JButton> cartasItems;
     private String nombreJugador;
     private static final int BTN_LONG=20;
+    private Thread hilo = null;
     /**
      * Creates new form NewJFrame
      */
     public NewJFrame() {
         initComponents();
+        hilo = new Thread(this);
+        hilo.start();
     }
 
     /**
@@ -81,26 +91,6 @@ public class NewJFrame extends javax.swing.JFrame {
         labelColeccion = new javax.swing.JLabel();
         panelSuperiorVacio = new javax.swing.JPanel();
         panelCartas = new javax.swing.JPanel();
-        cardButton1 = new javax.swing.JButton();
-        cardButton2 = new javax.swing.JButton();
-        cardButton3 = new javax.swing.JButton();
-        cardButton4 = new javax.swing.JButton();
-        cardButton5 = new javax.swing.JButton();
-        cardButton6 = new javax.swing.JButton();
-        cardButton7 = new javax.swing.JButton();
-        cardButton8 = new javax.swing.JButton();
-        cardButton9 = new javax.swing.JButton();
-        cardButton10 = new javax.swing.JButton();
-        cardButton11 = new javax.swing.JButton();
-        cardButton12 = new javax.swing.JButton();
-        cardButton13 = new javax.swing.JButton();
-        cardButton14 = new javax.swing.JButton();
-        cardButton15 = new javax.swing.JButton();
-        cardButton16 = new javax.swing.JButton();
-        cardButton17 = new javax.swing.JButton();
-        cardButton18 = new javax.swing.JButton();
-        cardButton19 = new javax.swing.JButton();
-        cardButton20 = new javax.swing.JButton();
         panelVacio2 = new javax.swing.JPanel();
         btnComprar = new javax.swing.JButton();
         labelTienda1 = new javax.swing.JLabel();
@@ -393,6 +383,14 @@ public class NewJFrame extends javax.swing.JFrame {
         logIn.getContentPane().add(panelVacio2Login);
 
         menuPrincipal.setMinimumSize(new java.awt.Dimension(1920, 1080));
+        menuPrincipal.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                menuPrincipalWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                menuPrincipalWindowClosing(evt);
+            }
+        });
         menuPrincipal.getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         panelVacio4.setLayout(new java.awt.GridLayout(1, 0));
@@ -413,9 +411,9 @@ public class NewJFrame extends javax.swing.JFrame {
         panelVacio.setLayout(panelVacioLayout);
         panelVacioLayout.setHorizontalGroup(
             panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelBatalla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 984, Short.MAX_VALUE)
+            .addComponent(labelBatalla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 987, Short.MAX_VALUE)
             .addGroup(panelVacioLayout.createSequentialGroup()
-                .addGap(303, 303, 303)
+                .addGap(189, 189, 189)
                 .addComponent(btnPelea, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -424,9 +422,9 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(panelVacioLayout.createSequentialGroup()
                 .addGap(126, 126, 126)
                 .addComponent(labelBatalla, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 396, Short.MAX_VALUE)
+                .addGap(392, 392, 392)
                 .addComponent(btnPelea, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(388, 388, 388))
+                .addContainerGap(392, Short.MAX_VALUE))
         );
 
         panelVacio4.add(panelVacio);
@@ -447,166 +445,6 @@ public class NewJFrame extends javax.swing.JFrame {
         );
 
         panelCartas.setLayout(new java.awt.GridLayout(5, 4));
-
-        cardButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton1ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton1);
-
-        cardButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton2ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton2);
-
-        cardButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton3ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton3);
-
-        cardButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton4ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton4);
-
-        cardButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton5ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton5);
-
-        cardButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton6ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton6);
-
-        cardButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton7ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton7);
-
-        cardButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton8ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton8);
-
-        cardButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton9ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton9);
-
-        cardButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton10ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton10);
-
-        cardButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton11ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton11);
-
-        cardButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton12ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton12);
-
-        cardButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton13ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton13);
-
-        cardButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton14ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton14);
-
-        cardButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton15ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton15);
-
-        cardButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton16ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton16);
-
-        cardButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton17ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton17);
-
-        cardButton18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton18ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton18);
-
-        cardButton19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton19ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton19);
-
-        cardButton20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/img/Incognita_card.png"))); // NOI18N
-        cardButton20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cardButton20ActionPerformed(evt);
-            }
-        });
-        panelCartas.add(cardButton20);
 
         javax.swing.GroupLayout panelColeccionLayout = new javax.swing.GroupLayout(panelColeccion);
         panelColeccion.setLayout(panelColeccionLayout);
@@ -719,7 +557,7 @@ public class NewJFrame extends javax.swing.JFrame {
                     .addGroup(panelVacio2Layout.createSequentialGroup()
                         .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(panelMonedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelTienda1, javax.swing.GroupLayout.DEFAULT_SIZE, 972, Short.MAX_VALUE))
+                            .addComponent(labelTienda1, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -757,7 +595,6 @@ public class NewJFrame extends javax.swing.JFrame {
         menuPrincipal.getContentPane().add(panelVacio4);
 
         dialogLogInFallido.setMinimumSize(new java.awt.Dimension(640, 360));
-        dialogLogInFallido.setPreferredSize(new java.awt.Dimension(640, 360));
         dialogLogInFallido.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 dialogLogInFallidoWindowClosed(evt);
@@ -838,7 +675,6 @@ public class NewJFrame extends javax.swing.JFrame {
         );
 
         dialogMercaderes.setMinimumSize(new java.awt.Dimension(640, 360));
-        dialogMercaderes.setPreferredSize(new java.awt.Dimension(640, 360));
         dialogMercaderes.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 dialogMercaderesWindowClosed(evt);
@@ -900,7 +736,6 @@ public class NewJFrame extends javax.swing.JFrame {
         );
 
         dialogWIP.setMinimumSize(new java.awt.Dimension(640, 360));
-        dialogWIP.setPreferredSize(new java.awt.Dimension(640, 360));
         dialogWIP.addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 dialogWIPWindowClosed(evt);
@@ -1149,7 +984,6 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_dialogLogInFallidoWindowClosed
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-
         if (Integer.parseInt(this.labelNumeroMonedas.getText()) <= 0) {
             this.setFocusable(false);
             this.dialogMercaderes.setVisible(true);
@@ -1158,6 +992,7 @@ public class NewJFrame extends javax.swing.JFrame {
             if (comprado) { //Si el update se ha hecho correctamente
                 ArrayList<Carta> listaCartasSobre = Juego.abrirSobre(); //lista que se va a mostrar en el dialog
                 this.labelNumeroMonedas.setText(String.valueOf(Integer.parseInt(this.labelNumeroMonedas.getText()) - 100)); //Actualiza el label de las monedas
+                gestion_BD.anadirCartasAColeccion(listaCartasSobre, nombreJugador);
                 mostarCartasSobre(listaCartasSobre);//Crea un JDialog para mostar las cartas que salieron en el sobre. 
                 cargarFotosCartas();//se vuelve a cargar las cartas que están en la base de datos.
             }
@@ -1217,6 +1052,14 @@ public class NewJFrame extends javax.swing.JFrame {
         this.dialogWIP.setVisible(false);
        this.menuPrincipal.setFocusable(true);
     }//GEN-LAST:event_dialogWIPWindowClosed
+
+    private void menuPrincipalWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_menuPrincipalWindowClosed
+        this.setVisible(true);
+    }//GEN-LAST:event_menuPrincipalWindowClosed
+
+    private void menuPrincipalWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_menuPrincipalWindowClosing
+        this.setVisible(true);
+    }//GEN-LAST:event_menuPrincipalWindowClosing
 
     public void mostrarDialogoLogInFallido(){
         this.dialogLogInFallido.setVisible(true);
@@ -1287,26 +1130,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnResetLogIn;
     private javax.swing.JButton btnVolverLogIn;
     private javax.swing.JButton btnVolverRegistro;
-    private javax.swing.JButton cardButton1;
-    private javax.swing.JButton cardButton10;
-    private javax.swing.JButton cardButton11;
-    private javax.swing.JButton cardButton12;
-    private javax.swing.JButton cardButton13;
-    private javax.swing.JButton cardButton14;
-    private javax.swing.JButton cardButton15;
-    private javax.swing.JButton cardButton16;
-    private javax.swing.JButton cardButton17;
-    private javax.swing.JButton cardButton18;
-    private javax.swing.JButton cardButton19;
-    private javax.swing.JButton cardButton2;
-    private javax.swing.JButton cardButton20;
-    private javax.swing.JButton cardButton3;
-    private javax.swing.JButton cardButton4;
-    private javax.swing.JButton cardButton5;
-    private javax.swing.JButton cardButton6;
-    private javax.swing.JButton cardButton7;
-    private javax.swing.JButton cardButton8;
-    private javax.swing.JButton cardButton9;
     private javax.swing.JComboBox<String> comboBoxRegionesRegistro;
     private javax.swing.JDialog dialogLogInFallido;
     private javax.swing.JDialog dialogMercaderes;
@@ -1401,5 +1224,29 @@ public class NewJFrame extends javax.swing.JFrame {
             });
         }
 
+    }
+
+    @Override
+    public void run() {
+        try {
+            File file = new File("cartitas.wav");
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            FloatControl controlVolumen = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            controlVolumen.setValue(10.0f); // Reduce el volumen en X decibelios.
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            
+            
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
