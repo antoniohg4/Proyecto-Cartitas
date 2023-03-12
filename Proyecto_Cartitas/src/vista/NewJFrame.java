@@ -30,18 +30,16 @@ import modelo.EnumRegiones;
  *
  * @author Antonio
  */
-public class NewJFrame extends javax.swing.JFrame implements Runnable{
+public class NewJFrame extends javax.swing.JFrame {
     private ArrayList <JButton> cartasItems;
     private String nombreJugador;
     private static final int BTN_LONG=20;
-    private Thread hilo = null;
+    ActionListener miActionListener;
     /**
      * Creates new form NewJFrame
      */
     public NewJFrame() {
         initComponents();
-        hilo = new Thread(this);
-        hilo.start();
     }
 
     /**
@@ -411,20 +409,21 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
         panelVacio.setLayout(panelVacioLayout);
         panelVacioLayout.setHorizontalGroup(
             panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelBatalla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 987, Short.MAX_VALUE)
-            .addGroup(panelVacioLayout.createSequentialGroup()
-                .addGap(189, 189, 189)
-                .addComponent(btnPelea, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacioLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelBatalla, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPelea, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelVacioLayout.setVerticalGroup(
             panelVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelVacioLayout.createSequentialGroup()
-                .addGap(126, 126, 126)
+                .addGap(134, 134, 134)
                 .addComponent(labelBatalla, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(392, 392, 392)
+                .addGap(315, 315, 315)
                 .addComponent(btnPelea, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(425, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         panelVacio4.add(panelVacio);
@@ -437,17 +436,14 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
         panelSuperiorVacio.setLayout(panelSuperiorVacioLayout);
         panelSuperiorVacioLayout.setHorizontalGroup(
             panelSuperiorVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSuperiorVacioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelColeccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(labelColeccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelSuperiorVacioLayout.setVerticalGroup(
             panelSuperiorVacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSuperiorVacioLayout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
+            .addGroup(panelSuperiorVacioLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addComponent(labelColeccion, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         panelCartas.setLayout(new java.awt.GridLayout(5, 4));
@@ -464,9 +460,9 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
             .addGroup(panelColeccionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelSuperiorVacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelCartas, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(580, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelCentralLayout = new javax.swing.GroupLayout(panelCentral);
@@ -558,9 +554,7 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
                 .addContainerGap()
                 .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelVacio2Layout.createSequentialGroup()
-                        .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panelMonedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelTienda1, javax.swing.GroupLayout.DEFAULT_SIZE, 975, Short.MAX_VALUE))
+                        .addComponent(panelMonedas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -570,27 +564,29 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
                                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(122, 122, 122))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVacio2Layout.createSequentialGroup()
-                                .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(110, 110, 110))))))
+                                .addGroup(panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(labelTienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         panelVacio2Layout.setVerticalGroup(
             panelVacio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelVacio2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelTienda1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 493, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnComprar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(0, 0, 0)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
-                .addGap(158, 158, 158))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         panelVacio4.add(panelVacio2);
@@ -1022,6 +1018,7 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
         }
         sobreAbiertoDialog.pack();
         sobreAbiertoDialog.setVisible(true);
+        sobreAbiertoDialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     private void btnReset1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReset1ActionPerformed
@@ -1080,6 +1077,25 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        try {
+            File file = new File("/cartitas.wav");
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            FloatControl controlVolumen = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            controlVolumen.setValue(10.0f); // Reduce el volumen en X decibelios.
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -1208,7 +1224,6 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
         cartaAmpliada.setSize(fotoCarta.getIconWidth()+16, fotoCarta.getIconHeight()+39);
         cartaAmpliada.setLocationRelativeTo(null);
         cartaAmpliada.setVisible(true);
-        
     }
     
     public void cargarFotosCartas() {
@@ -1220,36 +1235,13 @@ public class NewJFrame extends javax.swing.JFrame implements Runnable{
             scaledImage = scaledImage.getScaledInstance(fotoCarta.getIconWidth()/3, fotoCarta.getIconHeight()/3, java.awt.Image.SCALE_SMOOTH);
             fotoCarta = new ImageIcon(scaledImage);
             cartasItems.get(carta.getId()-1).setIcon(fotoCarta);
-            cartasItems.get(carta.getId()-1).addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    ampliarCartaEvento(evt,carta.getUrl());
-                }
-            });
-        }
-
-    }
-
-    @Override
-    public void run() {
-        try {
-            File file = new File("cartitas.wav");
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(file);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioIn);
-            FloatControl controlVolumen = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            controlVolumen.setValue(10.0f); // Reduce el volumen en X decibelios.
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-            
-            
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedAudioFileException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (LineUnavailableException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            if(cartasItems.get(carta.getId()-1).getActionListeners().length == 0){
+                cartasItems.get(carta.getId()-1).addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
+                        ampliarCartaEvento(evt,carta.getUrl());
+                    }
+                });
+            }
         }
     }
 }
